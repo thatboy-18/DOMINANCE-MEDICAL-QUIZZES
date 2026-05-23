@@ -698,6 +698,54 @@
             padding: 5px 10px;
         }
         .history-delete-btn:hover { color: var(--error); transform: scale(1.1); }
+
+        /* Question Counter Styles */
+        .custom-size-panel {
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+        .custom-size-panel h3 {
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        .size-input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-end;
+        }
+        .size-field {
+            flex: 1;
+            min-width: 150px;
+        }
+        .size-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .size-field input, .size-field select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        .range-fields {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .range-fields .size-field {
+            flex: 1;
+        }
+        .range-fields span {
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="dark-mode">
@@ -779,6 +827,51 @@
         <div class="mode-container">
             <h1 class="thatboy-title"><b><i>thatboy</i></b></h1>
             <h2 style="font-size: 32px; margin-bottom: 20px;">Select Marking Mode</h2>
+            
+            <!-- QUESTION COUNTER SECTION -->
+            <div class="custom-size-panel">
+                <h3>🎯 Custom Quiz Size</h3>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 16px;">Select how many questions you want to solve (leave empty for all questions)</p>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                        <button class="btn" onclick="setQuizMode('all')" id="modeAllBtn" style="flex: 1; background: var(--primary); color: white;">📚 All Questions</button>
+                        <button class="btn" onclick="setQuizMode('custom')" id="modeCustomBtn" style="flex: 1;">🎲 Custom Selection</button>
+                    </div>
+                </div>
+                
+                <div id="customSizePanel" style="display: none;">
+                    <div class="size-input-group">
+                        <div class="size-field">
+                            <label>Number of Questions</label>
+                            <input type="number" id="quizSize" min="1" max="527" step="1" placeholder="e.g., 20">
+                        </div>
+                        
+                        <div class="size-field">
+                            <label>Selection Method</label>
+                            <select id="selectionMethod">
+                                <option value="random">🎲 Random Selection</option>
+                                <option value="range">📊 Range (ID X to Y)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="rangeFields" style="display: none; margin-top: 15px;" class="range-fields">
+                        <div class="size-field">
+                            <label>From Question ID</label>
+                            <input type="number" id="rangeStart" min="1" max="527" placeholder="e.g., 1">
+                        </div>
+                        <span>→</span>
+                        <div class="size-field">
+                            <label>To Question ID</label>
+                            <input type="number" id="rangeEnd" min="1" max="527" placeholder="e.g., 50">
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 12px;">💡 Tip: Use Range mode to solve questions in batches (e.g., 1-50, 51-100)</p>
+                </div>
+            </div>
+            
             <div class="mode-cards">
                 <div class="mode-card" onclick="confirmStartQuiz('mark-as-you-go')">
                     <h3>✓ Mark As You Go</h3>
@@ -920,10 +1013,10 @@
     ];
 
     // ============================================
-    // COMPLETE ANATOMY QUESTION BANK - 527QUESTIONS
+    // QUESTION BANK - Replace with your full 527 questions
     // ============================================
     const masterQuestions = [
-        // INTRODUCTION (15 questions)
+     // INTRODUCTION (15 questions)
         { id: 1, topic: "INTRODUCTION", type: "mcq", question: "Which of the following structures is the most difficult to observe on an X-Ray film?", options: ["Vertebra T12", "Body of sternum", "Tracheal cartilages", "Manubrium of the sternum", "The second rib"], correctAnswerIndex: 2, explanation: "" },
         { id: 2, topic: "INTRODUCTION", type: "mcq", question: "A patient had pain in an infected kidney in his lumbar region, a hernia in his inguinal region, haemorrhoids in his perineal region. These regions are the:", options: ["Loin, Groin, between the anus and external genitalia respectively", "Genital region, groin, loin respectively", "Loin, groin and genital region respectively", "Genital region, loin and groin respectively", "Abdomen, loin and genital region respectively"], correctAnswerIndex: 0, explanation: "" },
         { id: 3, topic: "INTRODUCTION", type: "mcq", question: "A young medical student fell off a motorcycle and broke bones in his coxal, femoral, acromial and crural regions and tore a nerve in his axillary region. These regions are the:", options: ["Armpit, hip, thigh, shoulder and leg respectively", "Thigh, shoulder, leg, armpit and hip respectively", "Hip, thigh, shoulder, leg and armpit respectively", "Leg, armpit, hip, thigh and shoulder respectively", "Hip, thigh, shoulder, leg and armpit respectively"], correctAnswerIndex: 2, explanation: "" },
@@ -1519,7 +1612,6 @@
 { id: 526, topic: "OSTEOLOGY", type: "matching", question: "Is the largest, strongest and longest bone in the body", options: ["Sacrum", "Pubis", "Carpals", "Femur", "Fibula"], correctAnswerIndex: 3, explanation: "" },
 { id: 527, topic: "OSTEOLOGY", type: "matching", question: "It does not bear weight but several muscles originate from it", options: ["Sacrum", "Pubis", "Carpals", "Femur", "Fibula"], correctAnswerIndex: 4, explanation: "" },
     ];
-
     console.log("Loaded", masterQuestions.length, "Anatomy questions");
 
     // ========== APP STATE ==========
@@ -1534,7 +1626,10 @@
     let originalMarkingMode = null;
     let selectedTopics = ["ALL TOPICS"];
     let showOnlyIncorrect = false;
+    let quizMode = "all"; // "all" or "custom"
+    let customSelection = null; // Store custom selection for reuse
 
+    // Timer elements
     const timerSlider = document.getElementById('timerSlider');
     const timerValueDisplay = document.getElementById('timerValueDisplay');
     const timerToggle = document.getElementById('timerToggle');
@@ -1582,6 +1677,99 @@
         timerSlider.disabled = true;
     }
 
+    // Question Counter Functions
+    function setQuizMode(mode) {
+        quizMode = mode;
+        const customPanel = document.getElementById('customSizePanel');
+        const allBtn = document.getElementById('modeAllBtn');
+        const customBtn = document.getElementById('modeCustomBtn');
+        
+        if (mode === 'all') {
+            customPanel.style.display = 'none';
+            allBtn.style.background = 'var(--primary)';
+            allBtn.style.color = 'white';
+            customBtn.style.background = 'var(--bg-primary)';
+            customBtn.style.color = 'var(--text-primary)';
+        } else {
+            customPanel.style.display = 'block';
+            customBtn.style.background = 'var(--primary)';
+            customBtn.style.color = 'white';
+            allBtn.style.background = 'var(--bg-primary)';
+            allBtn.style.color = 'var(--text-primary)';
+        }
+    }
+
+    // Show/hide range fields based on selection method
+    const selectionMethod = document.getElementById('selectionMethod');
+    const rangeFields = document.getElementById('rangeFields');
+    
+    if (selectionMethod) {
+        selectionMethod.addEventListener('change', function() {
+            rangeFields.style.display = this.value === 'range' ? 'flex' : 'none';
+        });
+    }
+
+    function getCustomSelectedQuestions(filteredQuestions) {
+        const sizeInput = document.getElementById('quizSize');
+        const method = document.getElementById('selectionMethod').value;
+        const size = parseInt(sizeInput.value);
+        
+        if (!size || size <= 0) {
+            alert("Please enter a valid number of questions.");
+            return null;
+        }
+        
+        if (size > filteredQuestions.length) {
+            alert(`Only ${filteredQuestions.length} questions match your filters. Please enter a smaller number.`);
+            return null;
+        }
+        
+        if (method === 'random') {
+            // Random selection
+            const shuffled = [...filteredQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled.slice(0, size);
+        } 
+        else if (method === 'range') {
+            // Range selection by ID
+            const start = parseInt(document.getElementById('rangeStart').value);
+            const end = parseInt(document.getElementById('rangeEnd').value);
+            
+            if (isNaN(start) || isNaN(end)) {
+                alert("Please enter valid range values.");
+                return null;
+            }
+            if (start < 1 || end > masterQuestions.length || start > end) {
+                alert(`Invalid range. Questions are ID 1 to ${masterQuestions.length}.`);
+                return null;
+            }
+            
+            // Filter questions within ID range AND matching topic filters
+            const rangedQuestions = filteredQuestions.filter(q => q.id >= start && q.id <= end);
+            
+            if (rangedQuestions.length === 0) {
+                alert(`No questions found in ID range ${start}-${end} with current filters.`);
+                return null;
+            }
+            if (rangedQuestions.length < size) {
+                alert(`Only ${rangedQuestions.length} questions available in range ${start}-${end}. Please adjust range or number.`);
+                return null;
+            }
+            
+            // Shuffle within the ranged selection if needed
+            const shuffled = [...rangedQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled.slice(0, size);
+        }
+        return null;
+    }
+
     function filterQuestions() {
         let filtered = [...masterQuestions];
         const mcq = document.getElementById('filterMCQ')?.checked ?? true;
@@ -1607,12 +1795,6 @@
             });
         }
         
-        if (document.getElementById('shuffleToggle')?.checked) {
-            for (let i = filtered.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
-            }
-        }
         return filtered;
     }
 
@@ -1634,17 +1816,36 @@
             }
             
             card.onclick = () => {
-                if (selectedTopics.includes(topic)) {
-                    selectedTopics = selectedTopics.filter(t => t !== topic);
-                    card.style.borderColor = 'var(--border)';
-                    card.style.boxShadow = 'none';
-                    card.style.transform = 'translateY(0)';
+                if (topic === "ALL TOPICS") {
+                    if (selectedTopics.includes("ALL TOPICS")) {
+                        selectedTopics = [];
+                    } else {
+                        selectedTopics = ["ALL TOPICS"];
+                    }
                 } else {
-                    selectedTopics.push(topic);
-                    card.style.borderColor = 'var(--primary)';
-                    card.style.boxShadow = '0 0 0 2px var(--primary), 0 4px 12px rgba(0,0,0,0.1)';
-                    card.style.transform = 'translateY(-3px)';
+                    if (selectedTopics.includes("ALL TOPICS")) {
+                        selectedTopics = [topic];
+                    } else {
+                        if (selectedTopics.includes(topic)) {
+                            selectedTopics = selectedTopics.filter(t => t !== topic);
+                        } else {
+                            selectedTopics.push(topic);
+                        }
+                    }
                 }
+                
+                document.querySelectorAll('#topicListContainer .mode-card').forEach(c => {
+                    const topicName = c.getAttribute('data-topic');
+                    if (selectedTopics.includes(topicName)) {
+                        c.style.borderColor = 'var(--primary)';
+                        c.style.boxShadow = '0 0 0 2px var(--primary), 0 4px 12px rgba(0,0,0,0.1)';
+                        c.style.transform = 'translateY(-3px)';
+                    } else {
+                        c.style.borderColor = 'var(--border)';
+                        c.style.boxShadow = 'none';
+                        c.style.transform = 'translateY(0)';
+                    }
+                });
             };
             container.appendChild(card);
         });
@@ -1654,6 +1855,10 @@
         document.getElementById('modeSelection').classList.add('hidden');
         document.getElementById('quizPage').classList.add('hidden');
         document.getElementById('resultsPage').classList.add('hidden');
+        
+        // Reset custom selection when going back to topic selection
+        quizMode = "all";
+        customSelection = null;
     }
 
     function backToTopic() {
@@ -1673,9 +1878,29 @@
     function confirmStartQuiz(mode) {
         currentMarkingMode = mode;
         originalMarkingMode = mode;
-        const filtered = filterQuestions();
-        if (filtered.length === 0) { alert("No questions match your filters."); return; }
-        currentQuestionsList = filtered;
+        
+        let filtered = filterQuestions();
+        if (filtered.length === 0) { 
+            alert("No questions match your filters."); 
+            return; 
+        }
+        
+        // Apply custom question selection if enabled
+        if (quizMode === 'custom') {
+            const selected = getCustomSelectedQuestions(filtered);
+            if (selected === null) return;
+            currentQuestionsList = selected;
+        } else {
+            // Shuffle if shuffle toggle is checked
+            if (document.getElementById('shuffleToggle')?.checked) {
+                for (let i = filtered.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+                }
+            }
+            currentQuestionsList = filtered;
+        }
+        
         userAnswers = {};
         currentQIndex = 0;
         
@@ -1987,6 +2212,7 @@
         document.getElementById('quizPage').classList.add('hidden');
         document.getElementById('resultsPage').classList.add('hidden');
         selectedTopics = ["ALL TOPICS"];
+        quizMode = "all";
         if (document.getElementById('keywordFilter')) document.getElementById('keywordFilter').value = '';
     };
 
@@ -2184,6 +2410,13 @@
     window.addEventListener('DOMContentLoaded', function() {
         loadProgress();
         displayQuizHistory();
+        // Initialize custom size panel as hidden
+        if (document.getElementById('customSizePanel')) {
+            document.getElementById('customSizePanel').style.display = 'none';
+        }
+        if (document.getElementById('rangeFields')) {
+            document.getElementById('rangeFields').style.display = 'none';
+        }
     });
 </script>
 </body>
