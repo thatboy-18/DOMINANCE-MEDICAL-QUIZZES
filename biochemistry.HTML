@@ -863,7 +863,7 @@
 
         <div style="text-align: center; margin-top: 60px; padding: 30px; border-top: 2px solid var(--primary); border-radius: 12px;">
             <p style="font-size: 18px;">Absolute Dominance! <span class="italic-bold">thatboy</span> energy!</p>
-            <p style="font-size: 14px; margin-top: 15px;">🔥 Pro tip: Keyboard shortcuts A/B/C/D to answer, N for next, ← for previous</p>
+            <p style="font-size: 14px; margin-top: 15px;">🔥 Pro tip: Keyboard shortcuts A/B/C/D to answer, Right arrow for next, ← for previous</p>
             <p style="font-size: 14px; margin-top: 15px;"> Please note: All questions in this file were obtained from the Biochemistry Department of KNUST SMS, and no questions were manufactured by O.F.K. All credits to the Biochemistry Department.</p>
         </div>
         
@@ -3668,19 +3668,19 @@
         "explanation": "Enzyme inhibitors decrease enzyme activity. Most drugs work by inhibiting enzymes. Statement I is false - inhibitors DO affect enzyme activity."
     },
     {
-        "id": 177,
-        "topic": "ENZYMES",
-        "type": "mcq",
-        "question": "In non-competitive inhibition: I. The inhibitor binds to only free enzyme II. The inhibitor does not bind to substrate III. There is a decrease in Vmax but Km remains the same",
-        "options": [
-            "I, II, III",
-            "I and II only",
-            "II and III only",
-            "I only",
-            "III only"
-        ],
-        "correctAnswerIndex": 2,
-        "explanation": "Only statement III is correct. Non-competitive inhibitors can bind E or ES, but Vmax decreases and Km unchanged."
+    "id": 177,
+    "topic": "ENZYMES",
+    "type": "mcq",
+    "question": "In competitive inhibition: I. Vmax remains unchanged II. Km decreases III. The inhibitor binds reversibly to the active site of the enzyme",
+    "options": [
+        "I, II, III",
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "III only"
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Competitive inhibitors bind reversibly to the active site, competing with the substrate. This increases the apparent Km (more substrate needed to reach half Vmax) while Vmax remains unchanged because the inhibition can be overcome by high substrate concentration."
     },
     {
         "id": 178,
@@ -6157,7 +6157,7 @@
             }
             e.preventDefault();
         }
-        if (key === 'n') { nextQuestion(); e.preventDefault(); }
+        if (key === 'arrowright') { nextQuestion(); e.preventDefault(); }
         if (key === 'arrowleft') { previousQuestion(); e.preventDefault(); }
     });
 
