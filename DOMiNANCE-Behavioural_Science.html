@@ -8328,8 +8328,7 @@
                     const disabled = lockedPage && answered ? ' aria-disabled="true"' : '';
                     return '<button type="button" class="' + cls + '" onclick="selectGroupedAnswer(' + idx + ', ' + optIdx + ')"' + disabled + '>' + escapeHtml(opt) + '</button>';
                 }).join('');
-                const explanationVisible = showMark ? ' visible' : '';
-                return '<div class="tf-row"><div class="tf-row-header"><div class="tf-row-title"><span class="tf-number-pill">Q' + (pageOffset + idx + 1) + '</span><span>' + escapeHtml(sub.statement) + '</span></div></div><div class="tf-buttons">' + buttons + '</div><div class="tf-explanation' + explanationVisible + '">' + escapeHtml(sub.explanation) + '</div></div>';
+                return '<div class="tf-row"><div class="tf-row-header"><div class="tf-row-title"><span class="tf-number-pill">Q' + (pageOffset + idx + 1) + '</span><span>' + escapeHtml(sub.statement) + '</span></div></div><div class="tf-buttons">' + buttons + '</div></div>';
             }).join('');
             document.getElementById('optionsContainer').innerHTML = '<div class="tf-group-list">' + rows + '</div>';
         } else {
@@ -8373,7 +8372,7 @@
             return;
         }
         let isCorrect = stats.correct === 1;
-        document.getElementById('feedbackDiv').innerHTML = '<div class="feedback ' + (isCorrect ? 'correct' : 'incorrect') + '"><strong>' + (isCorrect ? 'CORRECT!' : 'INCORRECT') + '</strong><div style="margin-top:8px;">' + escapeHtml(q.explanation || '') + '</div></div>';
+        document.getElementById('feedbackDiv').innerHTML = '<div class="feedback ' + (isCorrect ? 'correct' : 'incorrect') + '"><strong>' + (isCorrect ? 'CORRECT!' : 'INCORRECT') + '</strong></div>';
     }
     function getAnsweredScore() {
         let answered = 0;
@@ -8430,7 +8429,7 @@
                     if (showOnlyIncorrect && isCorrect) return;
                     const userText = selected !== undefined ? sub.options[selected] : 'Not answered';
                     const correctText = sub.options[sub.correctAnswerIndex];
-                    html += '<div class="review-item ' + (isCorrect ? 'correct' : 'incorrect') + '"><h4>Q' + (reviewOffset + idx + 1) + ' - ' + escapeHtml(q.topic) + '</h4><p><strong>Preamble:</strong> ' + escapeHtml(q.question) + '</p><p><strong>Statement:</strong> ' + escapeHtml(sub.statement) + '</p><p>Your answer: <strong>' + escapeHtml(userText) + '</strong></p><p>Correct answer: <strong>' + escapeHtml(correctText) + '</strong></p><p style="color: var(--text-secondary); margin-top: 8px;">' + escapeHtml(sub.explanation) + '</p></div>';
+                    html += '<div class="review-item ' + (isCorrect ? 'correct' : 'incorrect') + '"><h4>Q' + (reviewOffset + idx + 1) + ' - ' + escapeHtml(q.topic) + '</h4><p><strong>Preamble:</strong> ' + escapeHtml(q.question) + '</p><p><strong>Statement:</strong> ' + escapeHtml(sub.statement) + '</p><p>Your answer: <strong>' + escapeHtml(userText) + '</strong></p><p>Correct answer: <strong>' + escapeHtml(correctText) + '</strong></p></div>';
                 });
                 reviewOffset += q.subQuestions.length;
             } else {
@@ -8438,7 +8437,7 @@
                 if (showOnlyIncorrect && isCorrect) continue;
                 let userText = answer ? q.options[answer.selectedIndex] : 'Not answered';
                 let correctText = q.options[q.correctAnswerIndex];
-                html += '<div class="review-item ' + (isCorrect ? 'correct' : 'incorrect') + '"><h4>Q' + (reviewOffset + 1) + '</h4><p>' + escapeHtml(q.question) + '</p><p>Your answer: <strong>' + escapeHtml(userText) + '</strong></p><p>Correct answer: <strong>' + escapeHtml(correctText) + '</strong></p><p style="color: var(--text-secondary); margin-top: 8px;">' + escapeHtml(q.explanation || '') + '</p></div>';
+                html += '<div class="review-item ' + (isCorrect ? 'correct' : 'incorrect') + '"><h4>Q' + (reviewOffset + 1) + '</h4><p>' + escapeHtml(q.question) + '</p><p>Your answer: <strong>' + escapeHtml(userText) + '</strong></p><p>Correct answer: <strong>' + escapeHtml(correctText) + '</strong></p></div>';
                 reviewOffset += 1;
             }
         }
