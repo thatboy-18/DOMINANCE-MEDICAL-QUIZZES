@@ -489,6 +489,80 @@
             color: white;
         }
 
+        .tf-group-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .tf-row {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
+            padding: 14px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .tf-row-title {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .tf-number-pill {
+            flex: 0 0 auto;
+            min-width: 36px;
+            height: 26px;
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--primary), transparent 86%);
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .tf-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .tf-option {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 10px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .tf-option:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tf-option.selected {
+            border-color: var(--primary);
+            background: color-mix(in srgb, var(--primary), transparent 88%);
+        }
+
+        .tf-option.correct {
+            border-color: var(--success);
+            background: color-mix(in srgb, var(--success), transparent 88%);
+            color: var(--success);
+        }
+
+        .tf-option.incorrect {
+            border-color: var(--error);
+            background: color-mix(in srgb, var(--error), transparent 88%);
+            color: var(--error);
+        }
+
         .feedback {
             padding: 20px;
             border-radius: 12px;
@@ -818,9 +892,11 @@
     <div id="homePage" class="container">
         <div class="home-header">
             <h1 class="thatboy-title"><b><i>thatboy</i></b></h1>
-            <p class="subtitle">KSMD BIOCHEMISTRY QUESTIONS BANK</p>
+                        <p class="subtitle">DOMiNANCE</p>
+
+            <p class="subtitle">BEHAVIORAL SCIENCE PAST QUESTIONS</p>
             <div class="tagline">
-                Learn fast. Quiz harder. <span class="italic-bold">Dominate</span>
+               GetLockedIn and <span class="italic-bold">Dominate</span>
             </div>
         </div>
 
@@ -833,13 +909,13 @@
             <div class="card quiz-card">
                 <div class="quiz-card-header">
                     <h3>Biochemistry Complete</h3>
-                    <span class="question-count">300 Q's</span>
+                    <span class="question-count">411 Q's</span>
                 </div>
                 <p class="quiz-description">Full KSMD Biochemistry question bank • All topics covered</p>
                 <div class="quiz-meta">
                     <span>⏱️ Timer optional</span>
-                    <span>300 Questions</span>
-                    <span>🔬 12 Topics</span>
+                    <span>411 Questions</span>
+                    <span>🔬 13 Topics</span>
                 </div>
             </div>
         </div>
@@ -909,7 +985,7 @@
                     <div class="size-input-group">
                         <div class="size-field">
                             <label>Number of Questions</label>
-                            <input type="number" id="quizSize" min="1" max="300" step="1" placeholder="e.g., 20">
+                        <input type="number" id="quizSize" min="1" max="411" step="1" placeholder="e.g., 20">
                         </div>
                         
                         <div class="size-field">
@@ -924,12 +1000,12 @@
                     <div id="rangeFields" style="display: none; margin-top: 15px;" class="range-fields">
                         <div class="size-field">
                             <label>From Question ID</label>
-                            <input type="number" id="rangeStart" min="1" max="300" placeholder="e.g., 1">
+                            <input type="number" id="rangeStart" min="1" max="411" placeholder="e.g., 1">
                         </div>
                         <span>→</span>
                         <div class="size-field">
                             <label>To Question ID</label>
-                            <input type="number" id="rangeEnd" min="1" max="300" placeholder="e.g., 50">
+                            <input type="number" id="rangeEnd" min="1" max="411" placeholder="e.g., 50">
                         </div>
                     </div>
                     
@@ -1080,11 +1156,12 @@
         "GLYCOGENESIS & GLYCOGENOLYSIS",
         "ELECTRON TRANSPORT CHAIN",
         "INHIBITION OF OXIDATIVE PHOSPHORYLATION",
-        "BETA OXIDATION OF FATTY ACIDS"
+        "BETA OXIDATION OF FATTY ACIDS",
+        "GLYOXYLATE CYCLE"
     ];
 
     // ============================================
-    // COMPLETE QUESTION BANK - Paste your 308 questions here
+    // COMPLETE QUESTION BANK
     // ============================================
      const masterQuestions = [
     {
@@ -5544,7 +5621,3328 @@
         ],
         "correctAnswerIndex": 3,
         "explanation": "X2: DF = 10, total volume 9 mL. Volume stock = 9/10 = 0.9 mL. Mass concentration stock = 40 g/L. X2 = 40/10 = 4 g/L."
+    },
+
+    {
+        "id": 301,
+        "topic": [
+            "FUNDAMENTALS OF BIOCHEMISTRY & METABOLISM",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "Characteristics of Enzymes",
+        "subQuestions": [
+            {
+                "statement": "Enzymes have primary and secondary structure.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Enzymes are catalysts for biological reactions.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Enzymes affect the equilibrium of the reaction.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Enzymes are mostly proteins.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Enzymes remain unchanged in the overall reaction.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 302,
+        "topic": [
+            "FUNDAMENTALS OF BIOCHEMISTRY & METABOLISM",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "Characteristics of Enzymes",
+        "subQuestions": [
+            {
+                "statement": "Enzyme activity is lost when denatured.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Enzymes bind substrates in special regions called active sites.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Enzymes accelerate the rate of making and breaking of covalent bonds during catalysis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Enzymes are highly specific.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Enzymes catalyze the forward and reverse reactions to the same extent.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 303,
+        "topic": "ENZYMES",
+        "type": "grouped-true-false",
+        "question": "Structures of Enzymes",
+        "subQuestions": [
+            {
+                "statement": "Enzymes range from 10 to 40 amino acid residues.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Most enzymes are smaller than the substrate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Depending on the enzyme, denaturation may be reversible or irreversible.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Only a small portion of the enzyme is directly involved in catalysis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Enzymes are long, linear chains of amino acids that fold to produce a three-dimensional product.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 304,
+        "topic": "ENZYMES",
+        "type": "grouped-true-false",
+        "question": "Which of the following is TRUE about enzymes?",
+        "subQuestions": [
+            {
+                "statement": "All enzymes are proteins.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "They have a molecular weight ranging from 12,000 to 1 million.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "All enzymes require chemical groups called cofactors for their activity.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Some enzymes require both coenzymes and prosthetic groups for their activity.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "The protein part of such an enzyme is called the apoprotein.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 305,
+        "topic": "ENZYMES",
+        "type": "grouped-true-false",
+        "question": "Enzyme Groups and Their Functions",
+        "subQuestions": [
+            {
+                "statement": "Oxidoreductases catalyze oxidation-reduction reactions.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Transferases catalyze addition of groups to double bonds, or formation of double bonds.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Hydrolases catalyze hydrolysis reactions.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Lyases catalyze group transfer reactions.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Isomerases catalyze transfer of groups within molecules to yield isomeric forms.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 306,
+        "topic": "ENZYMES",
+        "type": "grouped-true-false",
+        "question": "Enzymes Involved in Inhibition",
+        "subQuestions": [
+            {
+                "statement": "Coenzymes.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Holoenzymes.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Apoenzymes.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Allosteric enzymes.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Inhibitors.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 307,
+        "topic": [
+            "ENZYMES",
+            "TCA CYCLE"
+        ],
+        "type": "grouped-true-false",
+        "question": "Pyruvate Dehydrogenase Complex Modulation",
+        "subQuestions": [
+            {
+                "statement": "Fatty acids.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "NADH.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "ATP.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Acetyl-CoA.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Calcium.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 308,
+        "topic": [
+            "FUNDAMENTALS OF BIOCHEMISTRY & METABOLISM",
+            "GLYCOLYSIS",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "Arsenate",
+        "subQuestions": [
+            {
+                "statement": "It is a structural analogue of inorganic orthophosphate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "It inhibits the enolase reaction.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "It is a negative allosteric effector of PFK-1.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "It is a competitive inhibitor of the glyceraldehyde-3-phosphate dehydrogenase step.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Its presence leads to the loss of one substrate-level phosphorylation step in glycolysis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 309,
+        "topic": [
+            "FUNDAMENTALS OF BIOCHEMISTRY & METABOLISM",
+            "GLYCOLYSIS",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "Iodoacetate",
+        "subQuestions": [
+            {
+                "statement": "Reacts with the sulphydryl group at the active site of glyceraldehyde-3-phosphate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "It is a competitive inhibitor of the glyceraldehyde-3-phosphate dehydrogenase step in glycolysis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "It is an allosteric inhibitor of the phosphoglycerate kinase step in glycolysis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "It is an irreversible inhibitor of the oxidative phase of glycolysis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Its action is similar to that of mercury.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 310,
+        "topic": [
+            "ENZYMES",
+            "GLYCOLYSIS"
+        ],
+        "type": "grouped-true-false",
+        "question": "Glyceraldehyde-3-phosphate Dehydrogenase",
+        "subQuestions": [
+            {
+                "statement": "Glyceraldehyde-3-phosphate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Aconitase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Enolase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Succinate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Hexokinase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 311,
+        "topic": [
+            "ENZYMES",
+            "GLYCOLYSIS"
+        ],
+        "type": "grouped-true-false",
+        "question": "Glycolysis Regulation",
+        "subQuestions": [
+            {
+                "statement": "Hexokinase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Aldolase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Phosphofructokinase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Phosphoglucose isomerase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Glucokinase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 312,
+        "topic": [
+            "ENZYMES",
+            "GLYCOLYSIS"
+        ],
+        "type": "grouped-true-false",
+        "question": "Glucokinase",
+        "subQuestions": [
+            {
+                "statement": "Is widely distributed and occurs in most mammalian tissues.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Has a higher Km for glucose than hexokinase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Is widely distributed in prokaryotes.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "It is inhibited allosterically by glucose-6-phosphate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Undergoes induced fit.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 313,
+        "topic": [
+            "ENZYMES",
+            "TCA CYCLE"
+        ],
+        "type": "grouped-true-false",
+        "question": "Enzyme Cofactor Matching",
+        "subQuestions": [
+            {
+                "statement": "Pyruvate dehydrogenase - Thiamine pyrophosphate (TPP).",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Dihydrolipoamide acetyltransferase - Lipoamide.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Dihydrolipoamide dehydrogenase - CoASH.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Transsuccinylase - NAD and FAD.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Alpha-ketoglutarate dehydrogenase - FAD and NAD.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 314,
+        "topic": "ENZYMES",
+        "type": "grouped-true-false",
+        "question": "Vitamin-Derived Cofactors",
+        "subQuestions": [
+            {
+                "statement": "NAD.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "FAD.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "TPP.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Lipoamide.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "CoASH.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 315,
+        "topic": [
+            "ENZYMES",
+            "TCA CYCLE"
+        ],
+        "type": "grouped-true-false",
+        "question": "Thiamine Deficiency",
+        "subQuestions": [
+            {
+                "statement": "Impairs neurological function.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Decreases the activity of pyruvate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Decreases the activity of alpha-ketoglutarate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Decreases the activity of glucose-6-phosphate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Decreases ATP production and increases pyruvate level.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 316,
+        "topic": [
+            "FUNDAMENTALS OF BIOCHEMISTRY & METABOLISM",
+            "GLYCOLYSIS"
+        ],
+        "type": "grouped-true-false",
+        "question": "Carbohydrate Metabolism",
+        "subQuestions": [
+            {
+                "statement": "Phosphorylase catalyses the conversion of glucose to glucose-phosphate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Glucose is converted to glucose-1-phosphate by phosphatase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Glucose is converted to glucose-6-phosphate by hexokinase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "The conversion of glucose-6-phosphate to fructose-6-phosphate is catalyzed by an isomerase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Conversion of fructose-6-phosphate to fructose-1,6-bisphosphate is inhibited by citrate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 317,
+        "topic": [
+            "FUNDAMENTALS OF BIOCHEMISTRY & METABOLISM",
+            "GLYCOLYSIS",
+            "ELECTRON TRANSPORT CHAIN"
+        ],
+        "type": "grouped-true-false",
+        "question": "Energy Generation",
+        "subQuestions": [
+            {
+                "statement": "To generate energy, the body can make use of stored ATP.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Lactic acid fermentation.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Cellular respiration.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Glycolysis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Oxygen.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 318,
+        "topic": "GLUCONEOGENESIS",
+        "type": "grouped-true-false",
+        "question": "Gluconeogenesis",
+        "subQuestions": [
+            {
+                "statement": "Synthesis of glucose from non-carbohydrate sources is termed gluconeogenesis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "In glycogenolysis, glycogen molecules are broken down to glucose-phosphate moieties.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "In the liver and kidney, the regeneration of glucose is facilitated by glucose-6-phosphatase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Fatty acids are readily converted to glycogen during starvation.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Muscle glycogen plays an important role in blood glucose homeostasis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 319,
+        "topic": [
+            "GLUCONEOGENESIS",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "In Gluconeogenesis",
+        "subQuestions": [
+            {
+                "statement": "Biotin is required as a coenzyme even if the substrate is aspartate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Lactic acid could be converted to glucose by simply reversing the reactions of glycolysis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Malonic acid inhibits the conversion of pyruvate to phosphoenolpyruvate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "PEP carboxykinase catalyzes the decarboxylation of oxaloacetate to PEP.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Fructose-1,6-bisphosphatase is inhibited by high AMP and fructose-2,6-bisphosphate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 320,
+        "topic": [
+            "TCA CYCLE",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "TCA Cycle Enzymes Generating Reducing Equivalents",
+        "subQuestions": [
+            {
+                "statement": "Isocitrate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Succinate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Alpha-ketoglutarate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Malate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Pyruvate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 321,
+        "topic": [
+            "TCA CYCLE",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "TCA Cycle Regulation",
+        "subQuestions": [
+            {
+                "statement": "Citrate synthase has succinate as a negative allosteric effector and AMP as positive effector.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Succinate dehydrogenase and pyruvate dehydrogenase complex are allosteric enzymes.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Alpha-ketoglutarate dehydrogenase complex has NADH as a positive effector.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Succinyl-CoA synthetase is an NAD-linked enzyme.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "The decarboxylative steps are catalyzed by isocitrate dehydrogenase and alpha-ketoglutarate dehydrogenase complex.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 322,
+        "topic": [
+            "TCA CYCLE",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "TCA Cycle Enzymes Generating Reducing Equivalents",
+        "subQuestions": [
+            {
+                "statement": "Citrate synthase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Isocitrate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Succinate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Alpha-ketoglutarate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Malate dehydrogenase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 323,
+        "topic": [
+            "TCA CYCLE",
+            "FUNDAMENTALS OF BIOCHEMISTRY & METABOLISM"
+        ],
+        "type": "grouped-true-false",
+        "question": "TCA Cycle Intermediates Used by Other Pathways",
+        "subQuestions": [
+            {
+                "statement": "Citrate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Succinate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Malate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Succinyl-CoA.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Oxaloacetate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 324,
+        "topic": "TCA CYCLE",
+        "type": "grouped-true-false",
+        "question": "TCA Cycle - General",
+        "subQuestions": [
+            {
+                "statement": "The final pathway for the oxidation of fuel molecules.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "An aerobic pathway.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Provides precursors for biological molecules.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "The reactions of the pathway occur in the cytosol.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "It is the second stage of cellular respiration.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 325,
+        "topic": [
+            "TCA CYCLE",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "Conversion of Citrate to Isocitrate",
+        "subQuestions": [
+            {
+                "statement": "The ultimate reaction is an isomerization reaction.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Reaction involves solely hydration of the double bonds.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Both stages are catalyzed by aconitase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Intermediate formed is rehydrated to form isocitrate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Is an oxidative decarboxylative step.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 326,
+        "topic": [
+            "TCA CYCLE",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "TCA Cycle True Statements",
+        "subQuestions": [
+            {
+                "statement": "Two molecules of acetyl-CoA are used up per turn of the TCA cycle.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Isocitrate dehydrogenase reaction is coupled with formation of NADH.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "The substrate-level phosphorylation reaction is coupled with the release of GTP.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Oxaloacetate to malate is the final step of the TCA cycle.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Isocitrate dehydrogenase is an allosteric enzyme.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 327,
+        "topic": "METABOLISM OF FRUCTOSE & GALACTOSE",
+        "type": "grouped-true-false",
+        "question": "Essential Fructosuria",
+        "subQuestions": [
+            {
+                "statement": "It is caused by deficiency of hepatic fructokinase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "It is inherited as an autosomal dominant disorder.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Leads to fructose being trapped in the liver.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "It is a benign asymptomatic disorder.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Results in a decrease in plasma fructose levels.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 328,
+        "topic": "METABOLISM OF FRUCTOSE & GALACTOSE",
+        "type": "grouped-true-false",
+        "question": "Hereditary Fructose Intolerance",
+        "subQuestions": [
+            {
+                "statement": "It is also known as hereditary fructosemia.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "It is as a result of the absence of aldolase B.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Results in the accumulation of fructose in the kidneys and intestines.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Signs and symptoms include hypoglycaemia, jaundice and haemorrhage.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Treatment should include diet rich in fructose.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 329,
+        "topic": "METABOLISM OF FRUCTOSE & GALACTOSE",
+        "type": "grouped-true-false",
+        "question": "Galactokinase Deficiency",
+        "subQuestions": [
+            {
+                "statement": "Also known as galactosemia type 1 deficiency.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Is an autosomal recessive metabolic disorder.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "It is marked by an accumulation of galactose.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Leads to the accumulation of galactose in the lens of the eye.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Caused by a deficiency of the enzyme galactose-1-phosphate uridyltransferase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 330,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "grouped-true-false",
+        "question": "G6PD Deficiency - An individual with G6PD deficiency would be prone to",
+        "subQuestions": [
+            {
+                "statement": "Methemoglobin formation.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Oxyhemoglobin formation.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Heinz body formation.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Double bond formation.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Hemolysis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 331,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "grouped-true-false",
+        "question": "G6PD Deficiency - An individual with G6PD deficiency would be prone to",
+        "subQuestions": [
+            {
+                "statement": "Liver damage.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Hemolytic anaemia.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Malaria.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Diabetes insipidus.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Oxidative stress.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 332,
+        "topic": "GLYCOGENESIS & GLYCOGENOLYSIS",
+        "type": "grouped-true-false",
+        "question": "Metabolism of Glycogen",
+        "subQuestions": [
+            {
+                "statement": "Stored mainly in the muscle and liver cells.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Myocyte glycogen supplies glucose to all tissues.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Hepatocyte glycogen supplies glucose to all tissues and organs.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Muscle lacks the enzyme glucose-6-phosphatase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Glycogen is found abundantly in the mitochondria.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 333,
+        "topic": [
+            "GLYCOGENESIS & GLYCOGENOLYSIS",
+            "PENTOSE PHOSPHATE PATHWAY"
+        ],
+        "type": "grouped-true-false",
+        "question": "Glycogen",
+        "subQuestions": [
+            {
+                "statement": "Has a free reducing end.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Serves to maintain blood glucose level.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Provides glucose-6-phosphate for glycolysis.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Provides glucose-6-phosphate for synthesis of ribose sugars.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Provides glucose-6-phosphate for synthesis of NADPH.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 334,
+        "topic": [
+            "GLYCOGENESIS & GLYCOGENOLYSIS",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "Enzymes Involved in Glycogenolysis",
+        "subQuestions": [
+            {
+                "statement": "Glycogen mutase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Branching enzyme.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Glycogen phosphorylase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Phosphoglucomutase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Debranching enzyme.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 335,
+        "topic": [
+            "GLYCOGENESIS & GLYCOGENOLYSIS",
+            "ENZYMES"
+        ],
+        "type": "grouped-true-false",
+        "question": "In the breakdown of glycogen, the phosphorylation reaction is catalyzed by",
+        "subQuestions": [
+            {
+                "statement": "Glycogen mutase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Branching enzyme.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Glycogen phosphorylase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Phosphoglucomutase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Debranching enzyme.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 336,
+        "topic": [
+            "ELECTRON TRANSPORT CHAIN",
+            "INHIBITION OF OXIDATIVE PHOSPHORYLATION"
+        ],
+        "type": "grouped-true-false",
+        "question": "Mechanisms Involved in the ETC",
+        "subQuestions": [
+            {
+                "statement": "Some types of cassava can inhibit the ETC.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Atractyloside is a translocase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Rotenone is an uncoupler of the ETC.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "DNP is used as a weight loss drug.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Carbon monoxide is an uncoupling protein.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Antimycin A can be used in catching fish.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Complex I, II and IV are proton pumps.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "The maintenance of the electrochemical gradient is essential to ATP generation.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Iron-sulphur clusters and copper-based units are non-essential components of ETC proteins.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "The main purpose of the shuttle systems in respiration is the transport of NADH equivalents.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 337,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "grouped-true-false",
+        "question": "Which statement correctly describes photosynthesis and cellular respiration?",
+        "subQuestions": [
+            {
+                "statement": "Photosynthesis releases energy, while cellular respiration stores energy.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Photosynthesis and cellular respiration use the same raw materials.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Cellular respiration releases energy, while photosynthesis stores energy.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Cellular respiration and photosynthesis produce the same products.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Photosynthesis and cellular respiration serve the same function.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 338,
+        "topic": [
+            "ELECTRON TRANSPORT CHAIN",
+            "INHIBITION OF OXIDATIVE PHOSPHORYLATION"
+        ],
+        "type": "grouped-true-false",
+        "question": "Which of the following is/are TRUE?",
+        "subQuestions": [
+            {
+                "statement": "Oxygen is the only known electron acceptor.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Thermogenin is an ETC inhibitor.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Without glycolysis, the body cannot generate energy.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "Oxidative phosphorylation is a feature of chemiosmotic coupling.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "The many folds of the mitochondrion have a purpose.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
+    },
+    {
+        "id": 339,
+        "topic": [
+            "GLYOXYLATE CYCLE",
+            "TCA CYCLE"
+        ],
+        "type": "grouped-true-false",
+        "question": "Consider the following about the glyoxylate cycle",
+        "subQuestions": [
+            {
+                "statement": "Occurs in the peroxisome.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Uses two molecules of acetyl-CoA per complete cycle.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "Two decarboxylation steps of the TCA cycle are bypassed.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            },
+            {
+                "statement": "The two unique enzymes of the pathway are glyoxysome and glyoxylate.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 1,
+                "explanation": "False."
+            },
+            {
+                "statement": "The two unique enzymes of the pathway are isocitrate lyase and malate synthase.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "correctAnswerIndex": 0,
+                "explanation": "True."
+            }
+        ],
+        "explanation": "Grouped true/false question."
     }
+
+,
+
+    {
+        "id": 340,
+        "topic": "FUNDAMENTALS OF BIOCHEMISTRY & METABOLISM",
+        "type": "assertion-reason",
+        "question": "Metabolism in living organisms is very important BECAUSE metabolism is carried out by organisms to sustain life.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 341,
+        "topic": "FUNDAMENTALS OF BIOCHEMISTRY & METABOLISM",
+        "type": "assertion-reason",
+        "question": "Feedback inhibition is a form of metabolic regulation BECAUSE feedback inhibition leads to regulation of enzymes down the pathway.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 342,
+        "topic": "ENZYMES",
+        "type": "assertion-reason",
+        "question": "Increases in alanine transaminase in blood are indicative of kidney damage BECAUSE increases in alanine transaminase in blood results from kidney damage.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 4,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 343,
+        "topic": "ENZYMES",
+        "type": "assertion-reason",
+        "question": "The Lineweaver-Burk plot makes it difficult to calculate Km and Vmax of a reaction BECAUSE the Lineweaver-Burk plot gives a straight line.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 344,
+        "topic": "ENZYMES",
+        "type": "mcq",
+        "question": "Used in the making of washing powder.",
+        "options": [
+            "Streptokinase",
+            "Luciferase",
+            "Protease",
+            "Renin"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Classification item from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 345,
+        "topic": "ENZYMES",
+        "type": "mcq",
+        "question": "Used in cheese preparation.",
+        "options": [
+            "Streptokinase",
+            "Luciferase",
+            "Protease",
+            "Renin"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Classification item from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 346,
+        "topic": "ENZYMES",
+        "type": "mcq",
+        "question": "Used to detect bacterial contamination of food.",
+        "options": [
+            "Streptokinase",
+            "Luciferase",
+            "Protease",
+            "Renin"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Classification item from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 347,
+        "topic": "ENZYMES",
+        "type": "mcq",
+        "question": "Used to remove blood clots.",
+        "options": [
+            "Streptokinase",
+            "Luciferase",
+            "Protease",
+            "Renin"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Classification item from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 348,
+        "topic": "ENZYMES",
+        "type": "mcq",
+        "question": "Used in light production in fireflies.",
+        "options": [
+            "Streptokinase",
+            "Luciferase",
+            "Protease",
+            "Renin"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Classification item from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 349,
+        "topic": "GLYCOLYSIS",
+        "type": "assertion-reason",
+        "question": "Glucokinase functions only when glucose concentrations are high BECAUSE glucokinase has a low affinity for glucose.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 350,
+        "topic": "GLYCOLYSIS",
+        "type": "mcq",
+        "question": "Which of the following enzyme catalyzes the conversion of lactate to pyruvate? I. Pyruvate reductase II. Lactate reductase III. Lactate dehydrogenase",
+        "options": [
+            "I only",
+            "II only",
+            "III only",
+            "I and II only",
+            "I and III only",
+            "II and III only",
+            "I, II and III"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Multiple-completion item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 351,
+        "topic": "GLUCONEOGENESIS",
+        "type": "assertion-reason",
+        "question": "Fructose 1,6-bisphosphate belongs to the hydrolases BECAUSE fructose 1,6-bisphosphate is involved in aldol cleavage.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 4,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 352,
+        "topic": "GLUCONEOGENESIS",
+        "type": "mcq",
+        "question": "During gluconeogenesis, the first step is the conversion of pyruvate to phosphoenolpyruvate. Which of the following statement is true regarding the reaction step? I. This reaction involves two-step process catalyzed by pyruvate carboxylase and phosphoenolpyruvate carboxykinase II. Conversion of oxaloacetate from pyruvate occurs in the mitochondria. III. Formation of phosphoenolpyruvate requires only ATP as an energy source.",
+        "options": [
+            "I only",
+            "II only",
+            "III only",
+            "I and II only",
+            "I and III only",
+            "II and III only",
+            "I, II and III"
+        ],
+        "correctAnswerIndex": 6,
+        "explanation": "Multiple-completion item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 353,
+        "topic": "GLUCONEOGENESIS",
+        "type": "mcq",
+        "question": "During gluconeogenesis, the final step is the conversion of glucose-6-P to glucose catalyzed by glucose-6-phosphatase. Which of the following statements is true about the reaction step? I. Conversion of glucose-6-phosphate to glucose releases one ATP molecule II. Defect in glucose-6-phosphatase leads to abnormal accumulation of glycogen in liver III. Occurs in the cytosol",
+        "options": [
+            "I only",
+            "II only",
+            "III only",
+            "I and II only",
+            "I and III only",
+            "II and III only",
+            "I, II and III"
+        ],
+        "correctAnswerIndex": 6,
+        "explanation": "Multiple-completion item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 354,
+        "topic": "GLUCONEOGENESIS",
+        "type": "mcq",
+        "question": "Which of the following statement is true about Cori Cycle? I. It involves transport of lactate from skeletal tissues to the liver for gluconeogenesis II. It requires ATP III. It is active during resting stages and well-fed condition.",
+        "options": [
+            "I only",
+            "II only",
+            "III only",
+            "I and II only",
+            "I and III only",
+            "II and III only",
+            "I, II and III"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Multiple-completion item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 355,
+        "topic": "GLUCONEOGENESIS",
+        "type": "mcq",
+        "question": "During prolonged starvation, which of the following hormone is responsible for increasing gluconeogenesis in liver? I. Insulin II. Adrenaline III. Glucagon",
+        "options": [
+            "I only",
+            "II only",
+            "III only",
+            "I and II only",
+            "I and III only",
+            "II and III only",
+            "I, II and III"
+        ],
+        "correctAnswerIndex": 5,
+        "explanation": "Multiple-completion item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 356,
+        "topic": "GLUCONEOGENESIS",
+        "type": "mcq",
+        "question": "Which of the following statement about Phosphofructokinase-2 (PFK-2) is/are True? I. PFK-2 is an isoform of PFK-1 II. Activated protein kinase A phosphorylates PFK-2 III. PFK-2 catalyzes the conversion of fructose-6-phosphate to fructose 2,6-bisphosphate",
+        "options": [
+            "I only",
+            "II only",
+            "III only",
+            "I and II only",
+            "I and III only",
+            "II and III only",
+            "I, II and III"
+        ],
+        "correctAnswerIndex": 5,
+        "explanation": "Multiple-completion item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 357,
+        "topic": "GLUCONEOGENESIS",
+        "type": "mcq",
+        "question": "Which of the following statements is true? I. Gluconeogenesis generates ATP II. Gluconeogenesis generates NADH III. Gluconeogenesis expends GTP",
+        "options": [
+            "I only",
+            "II only",
+            "III only",
+            "I and II only",
+            "I and III only",
+            "II and III only",
+            "I, II and III"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Multiple-completion item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 358,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "assertion-reason",
+        "question": "The transaldolase enzyme requires TPP as a cofactor BECAUSE transketolase enzyme is a rate limiting enzyme.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 4,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 359,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "assertion-reason",
+        "question": "The RBC depends solely on the pentose phosphate pathway for NADPH BECAUSE mature RBC lacks mitochondria.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 360,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "assertion-reason",
+        "question": "G-6-P-D deficiency can lead to haemolytic anaemia BECAUSE the G-6-P-D deficiency causes formation of Heinz bodies.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 361,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "assertion-reason",
+        "question": "Glucose-6-phosphate Dehydrogenase is the rate limiting enzyme of PPP BECAUSE it catalyzes the committed step of the PPP.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 362,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "mcq",
+        "question": "The rate limiting step of pentose phosphate pathway is catalysed by:",
+        "options": [
+            "Hexokinase",
+            "Glycogen synthase",
+            "Glucose-6-phosphate dehydrogenase",
+            "Transketolase",
+            "Glucose-6-phosphatase"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 363,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "mcq",
+        "question": "The hydrolysis reaction of the pentose phosphate pathway is catalysed by:",
+        "options": [
+            "Glucose-6-phosphate dehydrogenase",
+            "Transketolase",
+            "Glucose-6-phosphatase",
+            "Hexokinase",
+            "Gluconolactonase"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 364,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "mcq",
+        "question": "Two important enzymes of the non-oxidative phase of the pentose phosphate pathway:",
+        "options": [
+            "Transglucosyl and Transferase",
+            "Epimerase and Isomerase",
+            "Transketolase and Transaldolase",
+            "Hexokinase and Glucokinase",
+            "Gluconolactonase and Glucosidase"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 365,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "mcq",
+        "question": "G-6-P-D Deficiency can cause the following except in pregnant women:",
+        "options": [
+            "Anaemia in mothers",
+            "Spontaneous abortion",
+            "Term Delivery",
+            "Infants weighing <2.5kg",
+            "Yellowing of skin in the newborn"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 366,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "mcq",
+        "question": "Consider the following about Glutathione and choose the odd one:",
+        "options": [
+            "It consists of 3 amino acid units",
+            "It is an antioxidant tripeptide",
+            "It is chelated by Iron",
+            "Its low in the aged",
+            "It is affected by poor nutrition"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 367,
+        "topic": "PENTOSE PHOSPHATE PATHWAY",
+        "type": "mcq",
+        "question": "The pentose phosphate pathway is inhibited by:",
+        "options": [
+            "Thiamine Deficiency",
+            "Enzyme deficiency",
+            "Poor Nutrition",
+            "ROS",
+            "Free radicals"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 368,
+        "topic": "GLYCOGENESIS & GLYCOGENOLYSIS",
+        "type": "assertion-reason",
+        "question": "Glycogen Synthase is a key enzyme in Glycogen metabolism BECAUSE Glycogen Synthase is required for the breakdown of Glycogen.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 369,
+        "topic": "GLYCOGENESIS & GLYCOGENOLYSIS",
+        "type": "mcq",
+        "question": "One of these is NOT an allosteric modulator of enzymes in the muscle cells during glycogenolysis:",
+        "options": [
+            "Calcium",
+            "AMP",
+            "ATP",
+            "NADH",
+            "Glucose-6-phosphate"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 370,
+        "topic": "GLYCOGENESIS & GLYCOGENOLYSIS",
+        "type": "mcq",
+        "question": "Which of these pairing statements is NOT TRUE about glycogen storage disease and their defective enzyme:",
+        "options": [
+            "Von Gierke's disease : glucose-6-phosphatase",
+            "Cori's disease : debranching enzyme",
+            "Andersen's disease : Debranching enzyme",
+            "McArdie's disease : muscle phosphorylase",
+            "Andersen's disease : branching enzyme"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 371,
+        "topic": "GLYCOGENESIS & GLYCOGENOLYSIS",
+        "type": "mcq",
+        "question": "Maazi Onyeocha is deficient of the enzyme Glucose-6-phosphatase, he has:",
+        "options": [
+            "Pompe Disease",
+            "von Gierke's Disease",
+            "Tauris Disease",
+            "Hers Disease",
+            "Cori's Disease"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 372,
+        "topic": "GLYCOGENESIS & GLYCOGENOLYSIS",
+        "type": "mcq",
+        "question": "Glycogen Storage Disease Type 0",
+        "options": [
+            "Glycogen synthase",
+            "Glucose-6-phosphatase",
+            "Phosphorylase Kinase",
+            "Glucosidase enzyme"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Classification item from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 373,
+        "topic": "GLYCOGENESIS & GLYCOGENOLYSIS",
+        "type": "mcq",
+        "question": "Glycogen storage disease type 1a",
+        "options": [
+            "Glycogen synthase",
+            "Glucose-6-phosphatase",
+            "Phosphorylase Kinase",
+            "Glucosidase enzyme"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Classification item from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 374,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "Embedded in the inner membrane of the mitochondrion are:",
+        "options": [
+            "the enzymes of the tricarboxylic acid cycle (Krebs' cycle)",
+            "the components of the electron transport chain",
+            "glycogen molecules",
+            "triacylglycerol molecules",
+            "GLUT4 molecules"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 375,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "What is the final acceptor in the electron transport chain?",
+        "options": [
+            "NADH",
+            "FADH+",
+            "FADH2",
+            "NAD+",
+            "O2"
+        ],
+        "correctAnswerIndex": 4,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 376,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "What is the net energy yield of oxidative phosphorylation, in ATP equivalents, per each mole of FADH2 oxidized?",
+        "options": [
+            "1.5",
+            "2.5",
+            "4",
+            "5",
+            "10"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 377,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "During the necropsy of a 20-year-old girl a pathologist discovered that her death had resulted from poisoning by cyanides. The disturbance of what process became the most credible cause of the girl's death?",
+        "options": [
+            "Tissue respiration",
+            "Synthesis of haemoglobin",
+            "Transport of oxygen by haemoglobin",
+            "Urea synthesis",
+            "Transport of hydrogen with malate-aspartate shunt"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 378,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "Researches recently established that immediate 'executors' of cell apoptosis are special enzymes called caspases. Generation of one of them proceeds with participation of cytochrome C. What is its function in a normal cell?",
+        "options": [
+            "Enzyme of respiratory chain of electron transport",
+            "Enzyme of tricarboxylic acid cycle",
+            "Enzyme of beta-oxidation of fatty acids",
+            "Component of H+-ATP system",
+            "Component of pyruvate-dehydrogenase system."
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 379,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "Mitochondria and chloroplasts share several common features, for example:",
+        "options": [
+            "both are capable of semiautonomous growth and reproduction.",
+            "neither are components of the endomembrane system.",
+            "each contains a small amount of DNA",
+            "each organelle synthesises some of its own protein.",
+            "all of the above"
+        ],
+        "correctAnswerIndex": 4,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 380,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "Ubiquinone:",
+        "options": [
+            "is a component of the ETC in chloroplasts, but not in mitochondria",
+            "is a potent inhibitor of electron transport.",
+            "uncouples electron transport and oxidative phosphorylation.",
+            "accepts electrons originating from both NADH and FADH2.",
+            "is an electron scavenger"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 381,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "All the following are part of respiratory complexes EXCEPT:",
+        "options": [
+            "iron-sulphur proteins.",
+            "cytochrome a.",
+            "cytochrome b.",
+            "ubiquinone.",
+            "FoF1 ATPase"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 382,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "During respiration, most ATP is formed as a direct result of the net movement of:",
+        "options": [
+            "potassium against a concentration gradient.",
+            "protons down a concentrated gradient.",
+            "electrons against a concentrated gradient.",
+            "electrons through a channel.",
+            "sodium ions into a cell."
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 383,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "The following are not true except the proton gradient in mitochondria:",
+        "options": [
+            "is a difference in [H+] between the matrix and the intermembrane space.",
+            "inhibits ATP production.",
+            "is not required for electron transport.",
+            "prevents generation of a voltage difference",
+            "is inconsequential in ATP synthesis"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 384,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "The electron transport chain (ETC) takes place in the ___ membrane of the mitochondria and the tricarboxylic acid cycle (TCA) takes place in the ___ of the mitochondria:",
+        "options": [
+            "Outer; inner membrane",
+            "Inner; intermembrane space",
+            "Outer; Outer membrane",
+            "Inner; Matrix",
+            "Neither take place within the mitochondria"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 385,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "Which of the following statements is most true?",
+        "options": [
+            "Mitochondria and bacteria possess different ribosomes and DNA.",
+            "Mitochondria and bacteria possess similar ribosomes and DNA.",
+            "Both mitochondria and bacteria have cristae.",
+            "Neither mitochondria nor bacteria possess chloroplasts.",
+            "Glycolysis occurs in both mitochondria and bacteria."
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 386,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "With regard to energy production by the mitochondria, what is the main factor driving ATP production at the terminal step of aerobic metabolism?",
+        "options": [
+            "The oxidation of glucose to lactate",
+            "The oxidation of glucose to pyruvate",
+            "The reduction of glucose to lactate",
+            "Energy from the electrochemical proton gradient is captured by ATP synthase",
+            "The reduction of glucose to pyruvate"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 387,
+        "topic": "ELECTRON TRANSPORT CHAIN",
+        "type": "mcq",
+        "question": "The primary purpose of the electron transport chain of mitochondria is ___:",
+        "options": [
+            "to carry ADP into the mitochondrial matrix",
+            "to directly phosphorylate AMP",
+            "to directly phosphorylate ADP",
+            "to synthesize ATP synthase",
+            "the generation of energy to sequester protons in the intermembrane space"
+        ],
+        "correctAnswerIndex": 4,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 388,
+        "topic": "INHIBITION OF OXIDATIVE PHOSPHORYLATION",
+        "type": "mcq",
+        "question": "Dinitrophenol acts as an uncoupler of oxidative phosphorylation by which of the following mechanisms?",
+        "options": [
+            "Activating the H+ ATPase",
+            "Activating coenzyme Q",
+            "Blocking proton transport across the inner mitochondrial membrane",
+            "Allowing for proton exchange across the inner mitochondrial membrane",
+            "The proton motive force will be decreased to a value less than zero"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 389,
+        "topic": "INHIBITION OF OXIDATIVE PHOSPHORYLATION",
+        "type": "mcq",
+        "question": "The following are true except Respiratory uncouplers:",
+        "options": [
+            "divert the flow of electrons in electron transport to other acceptors.",
+            "compete for electrons with the mobile carriers in the membrane.",
+            "increase membrane permeability.",
+            "allow electron transport to proceed without ATP production.",
+            "Can cause the generation of heat."
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 390,
+        "topic": "INHIBITION OF OXIDATIVE PHOSPHORYLATION",
+        "type": "mcq",
+        "question": "The synthase that catalyzes ATP production in oxidative phosphorylation:",
+        "options": [
+            "undergoes a conformational change in the process.",
+            "is a small protein.",
+            "is located in the cytosol.",
+            "is not well characterized.",
+            "is also called complex I"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 391,
+        "topic": "INHIBITION OF OXIDATIVE PHOSPHORYLATION",
+        "type": "mcq",
+        "question": "Electron transport and phosphorylation can be uncoupled by compounds that increase the permeability of the inner mitochondrial membrane to:",
+        "options": [
+            "Electrons",
+            "Protons",
+            "Uncouplers",
+            "Oxygen",
+            "All of these"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 392,
+        "topic": "INHIBITION OF OXIDATIVE PHOSPHORYLATION",
+        "type": "mcq",
+        "question": "Which of the following best describes thermogenesis?",
+        "options": [
+            "Energy expended for the purpose of conserving heat equal to that expended for ATP production",
+            "Energy expended for the purpose of conserving heat in addition to that expended for ATP production",
+            "Energy expended for the purpose of generating heat equal to that expended for ATP production",
+            "Energy expended for the purpose of generating heat in addition to that expended for ATP production"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 393,
+        "topic": "INHIBITION OF OXIDATIVE PHOSPHORYLATION",
+        "type": "mcq",
+        "question": "An uncoupler of oxidative phosphorylation such as dinitrophenol:",
+        "options": [
+            "Inhibits electron transport and ATP synthesis",
+            "Allow electron transport to proceed without ATP synthesis",
+            "Inhibits electron transport without impairment of ATP synthesis",
+            "Specially inhibits cytochrome b",
+            "is an electron scavenger"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 394,
+        "topic": "INHIBITION OF OXIDATIVE PHOSPHORYLATION",
+        "type": "mcq",
+        "question": "All of the following statements about the enzymic complex that carries out the synthesis of ATP during oxidative phosphorylation are correct except:",
+        "options": [
+            "It is located on the matrix side of the inner mitochondrial membrane",
+            "It is inhibited by oligomycin",
+            "It can exhibit ATPase activity",
+            "It is called complex V",
+            "It can bind molecular O2"
+        ],
+        "correctAnswerIndex": 4,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 395,
+        "topic": "INHIBITION OF OXIDATIVE PHOSPHORYLATION",
+        "type": "mcq",
+        "question": "A comatose laboratory technician is rushed into the emergency room. She dies while you are examining her. Her most dramatic symptom is that her body is literally hot to your touch, indicating an extremely high fever. You learn that her lab has been working on metabolic inhibitors and that there is a high likelihood that she accidentally ingested one. Which one of the following is the most likely culprit?",
+        "options": [
+            "Barbiturates",
+            "Piericidin A",
+            "Dimercaprol",
+            "Dinitrophenol",
+            "Cyanide"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 396,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "assertion-reason",
+        "question": "Mitochondrial β-oxidation functions either to directly produce ATP, or to produce ketone bodies for ATP generation by peripheral tissues BECAUSE the rate of mitochondrial β-oxidation flux is integrated with the oxidation of other substrates, particularly glucose.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 397,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "assertion-reason",
+        "question": "Peroxisomal beta-oxidation is specialized BECAUSE Peroxisomal beta-oxidation metabolizes very-long-chain fatty acids (VLCFAs), which are composed of 24-26 carbon units.",
+        "options": [
+            "Both statements TRUE; reason is correct explanation",
+            "Both statements TRUE; reason is NOT a correct explanation",
+            "First statement TRUE; second statement FALSE",
+            "First statement FALSE; second statement TRUE",
+            "Both statements FALSE"
+        ],
+        "correctAnswerIndex": 4,
+        "explanation": "Assertion-reason item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 398,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "The process of breaking down triacylglycerol into ACoA for ATP production is called:",
+        "options": [
+            "beta oxidation",
+            "lipogenesis",
+            "lipolysis",
+            "both (a) and (c) are correct",
+            "none of the above are correct"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 399,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "The β-oxidation of a molecule of palmitic acid, CH3(CH2)14CO2H:",
+        "options": [
+            "yields 8 molecules of acetyl-CoA and some ATP and water",
+            "yields 16 molecules of acetyl-CoA only",
+            "yields carbon dioxide and water only",
+            "does not involve oxygen",
+            "uses more ATP than it generates"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 400,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "What is the carrier that transports activated long chain fatty acyl groups across the inner mitochondrial membrane?",
+        "options": [
+            "Acyl CoA",
+            "Acetyl CoA",
+            "Carnitine",
+            "Albumin",
+            "Fatty acid binding proteins"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 401,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "What derivative form must fatty acids be activated to before they can participate in β-oxidation?",
+        "options": [
+            "Acetyl CoA",
+            "Acyl CoA",
+            "Carnitine",
+            "Ketone bodies",
+            "Polyunsaturated"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 402,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "An individual with a deficiency of an enzyme in the pathway for carnitine synthesis is not eating adequate amounts of carnitine in the diet. Which of the following would you expect during fasting as compared with an individual with an adequate intake and synthesis of carnitine?",
+        "options": [
+            "Fatty acid oxidation is increased",
+            "Ketone body synthesis is increased",
+            "Blood glucose levels are increased",
+            "The levels of dicarboxylic acids in the blood would be increased.",
+            "The levels of very-long-chain fatty acids in the blood would be increased"
+        ],
+        "correctAnswerIndex": 4,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 403,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "The β-oxidation spiral occurs in the mitochondrial matrix and involves all of the following steps EXCEPT:",
+        "options": [
+            "Fatty acyl CoA",
+            "trans 2 Fatty enoyl CoA",
+            "L-β-Hydroxy acyl CoA",
+            "β-Keto acyl CoA",
+            "1,6-biphosphate CoA"
+        ],
+        "correctAnswerIndex": 4,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 404,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "The oxidation of fatty acids is best described by which of the following sets of reactions?",
+        "options": [
+            "Oxidation, hydration, oxidation, carbon-carbon bond breaking",
+            "Oxidation, dehydration, oxidation, carbon-carbon bond breaking",
+            "Oxidation, hydration, reduction, carbon-carbon bond breaking",
+            "Oxidation, dehydration, reduction, carbon-carbon bond breaking",
+            "Reduction, hydration, oxidation, carbon-carbon bond breaking"
+        ],
+        "correctAnswerIndex": 0,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 405,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "All the following statements regarding ketone bodies are true except:",
+        "options": [
+            "They may result from starvation",
+            "They are formed in kidneys",
+            "They include acetoacetic acid and acetone",
+            "They may be excreted in urine",
+            "None of the above are true"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 406,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "During each cycle of β-oxidation of fatty acid, all the following compounds are generated except:",
+        "options": [
+            "NADH",
+            "H2O",
+            "FAD",
+            "Acyl CoA",
+            "Acetyl CoA"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 407,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "The energy yield from complete oxidation of products generated by second reaction cycle of β-oxidation of palmitoyl CoA will be:",
+        "options": [
+            "5 ATP",
+            "12 ATP",
+            "17 ATP",
+            "34 ATP",
+            "2 ATP"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 408,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "Fatty acids containing an odd number of carbons undergo β-oxidation until the last spiral. How many carbons are left in the fatty acyl CoA in the last spiral of b-oxidation?",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 409,
+        "topic": "BETA OXIDATION OF FATTY ACIDS",
+        "type": "mcq",
+        "question": "Where are very-long-chain fatty acids (24 to 26 carbons) oxidized in chain shortening pathways that use FAD-containing oxidase to allow for β-oxidation?",
+        "options": [
+            "Mitochondria",
+            "Lysosomes",
+            "Peroxisomes",
+            "Cytoplasm",
+            "Endoplasmic reticulum"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 410,
+        "topic": "GLYOXYLATE CYCLE",
+        "type": "mcq",
+        "question": "Glyoxylate cycle occurs in the ……….. of plants:",
+        "options": [
+            "Mitochondria",
+            "Glyoxylate",
+            "Cytosol",
+            "Glyoxysome",
+            "Golgi apparatus"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    },
+    {
+        "id": 411,
+        "topic": "GLYOXYLATE CYCLE",
+        "type": "mcq",
+        "question": "The short-circuiting enzymes in the Glyoxylate cycle are:",
+        "options": [
+            "Citrate synthase and Malate dehydrogenase",
+            "Malate synthase and Isocitrate lyase",
+            "Aconitase and Malic enzyme",
+            "Pyruvate dehydrogenase and alpha-ketoglutarate dehydrogenase",
+            "Citrate synthase and Aconitase"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "Single-best-answer item imported from Biochemistry_Questions_By_Topic.docx."
+    }
+
+
 ];
 
     console.log("Loaded", masterQuestions.length, "Biochemistry questions");
@@ -5706,13 +9104,13 @@
         
         filtered = filtered.filter(q => {
             if (q.type === 'mcq' && mcq) return true;
-            if (q.type === 'true-false' && tf) return true;
+            if ((q.type === 'true-false' || q.type === 'grouped-true-false') && tf) return true;
             if (q.type === 'assertion-reason' && ar) return true;
             return false;
         });
         
         const kw = document.getElementById('keywordFilter')?.value.toLowerCase().trim() || '';
-        if (kw) filtered = filtered.filter(q => q.question.toLowerCase().includes(kw) || (q.explanation && q.explanation.toLowerCase().includes(kw)));
+        if (kw) filtered = filtered.filter(q => getQuestionSearchParts(q).join(' ').toLowerCase().includes(kw));
         
         if (selectedTopics && selectedTopics.length > 0 && !selectedTopics.includes("ALL TOPICS")) {
             filtered = filtered.filter(q => {
@@ -5870,6 +9268,55 @@
         document.getElementById('timerText').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     }
 
+
+    function isGroupedQuestion(question) {
+        return Array.isArray(question?.subQuestions);
+    }
+
+    function getQuestionSearchParts(question) {
+        return [
+            question.question,
+            question.explanation,
+            question.type,
+            ...(Array.isArray(question.topic) ? question.topic : [question.topic]),
+            ...(question.options || []),
+            ...(question.subQuestions || []).flatMap(sub => [sub.statement, sub.explanation, ...(sub.options || [])])
+        ];
+    }
+
+    function getAnsweredAndCorrectForQuestion(question, answer) {
+        if (isGroupedQuestion(question)) {
+            let answered = 0;
+            let correct = 0;
+            const subAnswers = answer?.subAnswers || {};
+            question.subQuestions.forEach((sub, idx) => {
+                const selected = subAnswers[idx]?.selectedIndex;
+                if (selected === undefined) return;
+                answered++;
+                if (selected === sub.correctAnswerIndex) correct++;
+            });
+            return { answered, correct };
+        }
+        return {
+            answered: answer ? 1 : 0,
+            correct: answer && answer.selectedIndex === question.correctAnswerIndex ? 1 : 0
+        };
+    }
+
+    function isQuestionComplete(index) {
+        const question = currentQuestionsList[index];
+        const answer = userAnswers[index];
+        if (!question) return false;
+        if (isGroupedQuestion(question)) {
+            return question.subQuestions.every((_, subIndex) => answer?.subAnswers?.[subIndex]?.selectedIndex !== undefined);
+        }
+        return !!answer;
+    }
+
+    function getTotalAnswerCount(list = currentQuestionsList) {
+        return list.reduce((total, question) => total + (isGroupedQuestion(question) ? question.subQuestions.length : 1), 0);
+    }
+
     function displayQuestion() {
         updateQuestionGrid();
         if (!currentQuestionsList.length || currentQIndex >= currentQuestionsList.length) return;
@@ -5878,18 +9325,36 @@
         document.getElementById('totalQNum').innerText = currentQuestionsList.length;
         document.getElementById('progressFill').style.width = ((currentQIndex + 1) / currentQuestionsList.length * 100) + '%';
         document.getElementById('questionText').innerHTML = '<span class="question-number-pill">Q' + (currentQIndex + 1) + '</span> ' + escapeHtml(q.question);
-        
-        let optsHtml = q.options.map((opt, idx) => {
-            let isSelected = userAnswers[currentQIndex]?.selectedIndex === idx;
-            return `<div class="option ${isSelected ? 'selected' : ''}" onclick="selectAnswer(${idx})">
-                        <span class="option-letter">${String.fromCharCode(65 + idx)}</span>
-                        <span>${escapeHtml(opt)}</span>
-                    </div>`;
-        }).join('');
-        document.getElementById('optionsContainer').innerHTML = optsHtml;
+
+        if (isGroupedQuestion(q)) {
+            const answer = userAnswers[currentQIndex] || { subAnswers: {} };
+            const rows = q.subQuestions.map((sub, idx) => {
+                const selected = answer.subAnswers?.[idx]?.selectedIndex;
+                const answered = selected !== undefined;
+                const showMark = currentMarkingMode === 'mark-as-you-go' && answered;
+                const buttons = sub.options.map((opt, optIdx) => {
+                    let cls = 'tf-option';
+                    if (selected === optIdx) cls += ' selected';
+                    if (showMark && optIdx === sub.correctAnswerIndex) cls += ' correct';
+                    if (showMark && selected === optIdx && selected !== sub.correctAnswerIndex) cls += ' incorrect';
+                    return '<button type="button" class="' + cls + '" onclick="selectGroupedAnswer(' + idx + ', ' + optIdx + ')">' + escapeHtml(opt) + '</button>';
+                }).join('');
+                return '<div class="tf-row"><div class="tf-row-title"><span class="tf-number-pill">' + (idx + 1) + '</span><span>' + escapeHtml(sub.statement) + '</span></div><div class="tf-buttons">' + buttons + '</div></div>';
+            }).join('');
+            document.getElementById('optionsContainer').innerHTML = '<div class="tf-group-list">' + rows + '</div>';
+        } else {
+            let optsHtml = q.options.map((opt, idx) => {
+                let isSelected = userAnswers[currentQIndex]?.selectedIndex === idx;
+                return `<div class="option ${isSelected ? 'selected' : ''}" onclick="selectAnswer(${idx})">
+                            <span class="option-letter">${String.fromCharCode(65 + idx)}</span>
+                            <span>${escapeHtml(opt)}</span>
+                        </div>`;
+            }).join('');
+            document.getElementById('optionsContainer').innerHTML = optsHtml;
+        }
         document.getElementById('prevBtn').disabled = currentQIndex === 0;
-        document.getElementById('nextBtn').innerText = currentQIndex === currentQuestionsList.length - 1 ? "SUBMIT" : "NEXT →";
-        
+        document.getElementById('nextBtn').innerText = currentQIndex === currentQuestionsList.length - 1 ? "SUBMIT" : "NEXT ->";
+
         if (currentMarkingMode === 'mark-as-you-go' && userAnswers[currentQIndex]) {
             showFeedback();
         } else {
@@ -5897,12 +9362,23 @@
         }
     }
 
+    window.selectGroupedAnswer = function(subIndex, selectedIndex) {
+        let q = currentQuestionsList[currentQIndex];
+        if (!isGroupedQuestion(q)) return;
+        if (!userAnswers[currentQIndex]) userAnswers[currentQIndex] = { subAnswers: {} };
+        if (currentMarkingMode === 'mark-as-you-go' && userAnswers[currentQIndex].subAnswers?.[subIndex]) return;
+        userAnswers[currentQIndex].subAnswers[subIndex] = { selectedIndex };
+        displayQuestion();
+        saveProgress();
+    };
+
     window.selectAnswer = function(idx) {
         let q = currentQuestionsList[currentQIndex];
+        if (isGroupedQuestion(q)) return;
         if (currentMarkingMode === 'mark-as-you-go' && userAnswers[currentQIndex]) return;
-        
+
         userAnswers[currentQIndex] = { selectedIndex: idx };
-        
+
         if (currentMarkingMode === 'mark-as-you-go') {
             userAnswers[currentQIndex].isCorrect = (idx === q.correctAnswerIndex);
             displayQuestion();
@@ -5917,16 +9393,28 @@
         }
         saveProgress();
     };
+    function shouldHideExplanation(question) {
+        return question && question.id >= 340 && question.id <= 411;
+    }
 
     function showFeedback() {
         let a = userAnswers[currentQIndex];
         if (!a) return;
         let q = currentQuestionsList[currentQIndex];
+        if (isGroupedQuestion(q)) {
+            const stats = getAnsweredAndCorrectForQuestion(q, a);
+            if (!stats.answered) return;
+            document.getElementById('feedbackDiv').innerHTML = `
+            <div class="feedback ${stats.correct === stats.answered ? 'correct' : 'incorrect'}">
+                <strong>${stats.correct}/${stats.answered} correct on this page</strong>
+            </div>`;
+            return;
+        }
         let isCorrect = (a.selectedIndex === q.correctAnswerIndex);
         document.getElementById('feedbackDiv').innerHTML = `
             <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
-                <strong>${isCorrect ? '✓ CORRECT!' : '✗ INCORRECT'}</strong>
-                <div class="explanation"><strong>Explanation:</strong> ${escapeHtml(q.explanation)}</div>
+                <strong>${isCorrect ? '? CORRECT!' : '? INCORRECT'}</strong>
+                ${shouldHideExplanation(q) ? '' : `<div class="explanation"><strong>Explanation:</strong> ${escapeHtml(q.explanation)}</div>`}
             </div>`;
     }
 
@@ -5935,13 +9423,13 @@
             if (currentMarkingMode === 'submit-all') {
                 let unanswered = [];
                 for (let i = 0; i < currentQuestionsList.length; i++) {
-                    if (!userAnswers[i]) unanswered.push(i + 1);
+                    if (!isQuestionComplete(i)) unanswered.push(i + 1);
                 }
                 if (unanswered.length > 0) {
-                    let message = `⚠️ You have ${unanswered.length} unanswered question(s): ${unanswered.join(', ')}.\n\nSubmit anyway?`;
+                    let message = `You have ${unanswered.length} incomplete page(s): ${unanswered.join(', ')}.\n\nSubmit anyway?`;
                     if (!confirm(message)) {
                         for (let i = 0; i < currentQuestionsList.length; i++) {
-                            if (!userAnswers[i]) {
+                            if (!isQuestionComplete(i)) {
                                 currentQIndex = i;
                                 displayQuestion();
                                 return;
@@ -5971,13 +9459,11 @@
         if (timerIntervalId) clearInterval(timerIntervalId);
         let correct = 0;
         for (let i = 0; i < currentQuestionsList.length; i++) {
-            let answer = userAnswers[i];
-            if (answer && answer.selectedIndex === currentQuestionsList[i].correctAnswerIndex) {
-                correct++;
-            }
+            correct += getAnsweredAndCorrectForQuestion(currentQuestionsList[i], userAnswers[i]).correct;
         }
-        let pct = Math.round((correct / currentQuestionsList.length) * 100);
-        showResults(correct, currentQuestionsList.length, pct);
+        let total = getTotalAnswerCount();
+        let pct = total ? Math.round((correct / total) * 100) : 0;
+        showResults(correct, total, pct);
     }
 
     function showResults(correct, total, pct) {
@@ -6011,31 +9497,50 @@
         if (!lastQuizState) return;
         const container = document.getElementById('reviewList');
         if (!container) return;
-        
+
         let html = '';
         for (let i = 0; i < lastQuizState.questions.length; i++) {
             let q = lastQuizState.questions[i];
             let answer = lastQuizState.answers[i];
+            if (isGroupedQuestion(q)) {
+                const subAnswers = answer?.subAnswers || {};
+                q.subQuestions.forEach((sub, subIndex) => {
+                    const selected = subAnswers[subIndex]?.selectedIndex;
+                    const isCorrect = selected === sub.correctAnswerIndex;
+                    if (showOnlyIncorrect && isCorrect) return;
+                    const userText = selected !== undefined ? sub.options[selected] : 'Not answered';
+                    const correctText = sub.options[sub.correctAnswerIndex];
+                    html += `
+                <div class="review-card ${isCorrect ? 'correct' : 'incorrect'}">
+                    <div class="review-question">Q${i+1}.${subIndex+1}. ${escapeHtml(q.question)} - ${escapeHtml(sub.statement)}</div>
+                    <div class="review-answer">?? <strong>Your answer:</strong> <span class="${isCorrect ? 'review-correct-answer' : 'review-your-answer'}">${escapeHtml(userText)}</span></div>
+                    <div class="review-answer">? <strong>Correct answer:</strong> <span class="review-correct-answer">${escapeHtml(correctText)}</span></div>
+                    <div class="review-explanation"><strong>?? Explanation:</strong> ${escapeHtml(sub.explanation || '')}</div>
+                </div>
+            `;
+                });
+                continue;
+            }
             let isCorrect = answer && (answer.selectedIndex === q.correctAnswerIndex);
             let userLetter = answer ? String.fromCharCode(65 + answer.selectedIndex) : 'Not answered';
             let correctLetter = String.fromCharCode(65 + q.correctAnswerIndex);
             let userText = answer ? q.options[answer.selectedIndex] : 'Not answered';
             let correctText = q.options[q.correctAnswerIndex];
-            
+
             if (showOnlyIncorrect && isCorrect) continue;
-            
+
             html += `
                 <div class="review-card ${isCorrect ? 'correct' : 'incorrect'}">
                     <div class="review-question">Q${i+1}. ${escapeHtml(q.question)}</div>
-                    <div class="review-answer">📌 <strong>Your answer:</strong> <span class="${isCorrect ? 'review-correct-answer' : 'review-your-answer'}">${userLetter}. ${escapeHtml(userText)}</span></div>
-                    <div class="review-answer">✅ <strong>Correct answer:</strong> <span class="review-correct-answer">${correctLetter}. ${escapeHtml(correctText)}</span></div>
-                    <div class="review-explanation"><strong>💡 Explanation:</strong> ${escapeHtml(q.explanation)}</div>
+                    <div class="review-answer">?? <strong>Your answer:</strong> <span class="${isCorrect ? 'review-correct-answer' : 'review-your-answer'}">${userLetter}. ${escapeHtml(userText)}</span></div>
+                    <div class="review-answer">? <strong>Correct answer:</strong> <span class="review-correct-answer">${correctLetter}. ${escapeHtml(correctText)}</span></div>
+                    ${shouldHideExplanation(q) ? '' : `<div class="review-explanation"><strong>Explanation:</strong> ${escapeHtml(q.explanation)}</div>`}
                 </div>
             `;
         }
-        
+
         if (showOnlyIncorrect && html === '') {
-            html = '<div style="text-align: center; padding: 40px;">🎉 Amazing! You got all questions correct!</div>';
+            html = '<div style="text-align: center; padding: 40px;">?? Amazing! You got all questions correct!</div>';
         }
         container.innerHTML = html;
     }
@@ -6095,33 +9600,38 @@
             alert("No quiz data available. Please complete a quiz first.");
             return;
         }
-        
+
         let wrongQuestions = [];
         for (let i = 0; i < lastQuizState.questions.length; i++) {
             let userAnswer = lastQuizState.answers[i];
             let question = lastQuizState.questions[i];
+            if (isGroupedQuestion(question)) {
+                const wrongSubs = question.subQuestions.filter((sub, subIndex) => userAnswer?.subAnswers?.[subIndex]?.selectedIndex !== sub.correctAnswerIndex);
+                if (wrongSubs.length) wrongQuestions.push({ ...question, subQuestions: wrongSubs });
+                continue;
+            }
             let isCorrect = userAnswer && (userAnswer.selectedIndex === question.correctAnswerIndex);
             if (!isCorrect) {
                 wrongQuestions.push(question);
             }
         }
-        
+
         if (wrongQuestions.length === 0) {
-            alert("🎉 PERFECT! No incorrect answers to review. You got them all right!");
+            alert("?? PERFECT! No incorrect answers to review. You got them all right!");
             return;
         }
-        
+
         currentQuestionsList = wrongQuestions;
         userAnswers = {};
         currentQIndex = 0;
         currentMarkingMode = originalMarkingMode;
-        
+
         if (timerIntervalId) clearInterval(timerIntervalId);
-        document.getElementById('timerText').innerText = '∞';
+        document.getElementById('timerText').innerText = '?';
         document.getElementById('timerDisplay').style.opacity = '0.6';
         document.getElementById('timerDisplay').style.background = 'rgba(100,100,100,0.2)';
-        
-        document.getElementById('modeBadge').innerText = '📝 REVIEW MODE (No Timer)';
+
+        document.getElementById('modeBadge').innerText = '?? REVIEW MODE (No Timer)';
         document.getElementById('quizTitle').innerText = 'Review: Incorrect Questions';
         document.getElementById('totalQNum').innerText = currentQuestionsList.length;
         document.getElementById('resultsPage').classList.add('hidden');
@@ -6172,7 +9682,7 @@
         if (!grid) return;
         let html = '';
         for (let i = 0; i < currentQuestionsList.length; i++) {
-            let isAnswered = userAnswers[i] !== undefined;
+            let isAnswered = isQuestionComplete(i);
             let isCurrent = (i === currentQIndex);
             html += `<div class="question-dot ${isAnswered ? 'answered' : 'unanswered'} ${isCurrent ? 'current' : ''}" onclick="jumpToQuestion(${i})">${i + 1}</div>`;
         }
@@ -6357,7 +9867,7 @@
             topics: topicCounts.size,
             mcq: masterQuestions.filter(q => q.type === 'mcq').length,
             matching: masterQuestions.filter(q => q.type === 'matching').length,
-            trueFalse: masterQuestions.filter(q => q.type === 'true-false').length,
+            trueFalse: masterQuestions.filter(q => q.type === 'true-false').length + masterQuestions.filter(q => q.type === 'grouped-true-false').reduce((sum, q) => sum + q.subQuestions.length, 0),
             assertion: masterQuestions.filter(q => q.type === 'assertion-reason').length,
             topicCounts
         };
@@ -6392,7 +9902,7 @@
         const kw = document.getElementById('keywordFilter')?.value.toLowerCase().trim() || '';
         if (kw) {
             filtered = filtered.filter(q => {
-                const haystack = [q.question, q.explanation, q.type, ...getTopicNames(q), ...q.options].join(' ').toLowerCase();
+                const haystack = getQuestionSearchParts(q).join(' ').toLowerCase();
                 return haystack.includes(kw);
             });
         }
@@ -6454,3 +9964,6 @@
 </script>
 </body>
 </html>
+
+
+
