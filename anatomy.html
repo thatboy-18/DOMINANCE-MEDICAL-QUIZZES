@@ -976,7 +976,7 @@
                 <label>🔎 Keyword Search</label>
                 <input type="text" id="keywordFilter" class="filter-input" placeholder="e.g., femur, skull, clavicle...">
             </div>
-            <div class="shortcut-hint">💡 Filters apply when you start a quiz | Keyboard: A/B/C/D/E = answers, N = next, Left Arrow = previous</div>
+            <div class="shortcut-hint">💡 Filters apply when you start a quiz | Keyboard: A/B/C/D/E = answers, Right Arrow = next, Left Arrow = previous</div>
         </div>
 
         <div style="text-align: center; margin-top: 60px; padding: 30px; border-top: 2px solid var(--primary); border-radius: 12px;">
@@ -17540,7 +17540,7 @@ Submit anyway?`;
             }
             e.preventDefault();
         }
-        if (key === 'n') { nextQuestion(); e.preventDefault(); }
+        if (key === 'arrowright') { nextQuestion(); e.preventDefault(); }
         if (key === 'arrowleft') { previousQuestion(); e.preventDefault(); }
     });
 
