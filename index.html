@@ -22,6 +22,9 @@
             --gold: #c9a84c;
             --gold-border: rgba(201,168,76,0.3);
             --gold-glow: rgba(201,168,76,0.15);
+            --entomology: #2d8b6e;
+            --entomology-border: rgba(45,139,110,0.35);
+            --entomology-glow: rgba(45,139,110,0.18);
         }
 
         body {
@@ -38,7 +41,8 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background:
                 radial-gradient(circle at 20% 50%, rgba(0,212,255,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0,184,204,0.15) 0%, transparent 50%);
+                radial-gradient(circle at 80% 80%, rgba(0,184,204,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 20%, rgba(45,139,110,0.12) 0%, transparent 45%);
             pointer-events: none;
             z-index: -1;
         }
@@ -124,6 +128,11 @@
             border: 1px solid var(--gold-border);
             background: var(--gold-glow);
         }
+        .label-entomology {
+            color: var(--entomology);
+            border: 1px solid var(--entomology-border);
+            background: var(--entomology-glow);
+        }
 
         /* ── QUIZ GRID ── */
         .quiz-grid {
@@ -191,6 +200,35 @@
         .extra-card h2 { font-size: 28px; color: var(--gold); margin-bottom: 12px; }
         .extra-card p  { color: var(--text-secondary); font-size: 15px; margin-bottom: 18px; }
 
+        /* ── MEDICAL ENTOMOLOGY CARD ── */
+        .entomology-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--entomology-border);
+            border-radius: 20px;
+            padding: 36px 28px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        .entomology-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at top, rgba(45,139,110,0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .entomology-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--entomology);
+            box-shadow: 0 20px 40px rgba(45,139,110,0.25);
+        }
+        .entomology-card h2 { font-size: 28px; color: var(--entomology); margin-bottom: 12px; }
+        .entomology-card p  { color: var(--text-secondary); font-size: 15px; margin-bottom: 18px; }
+
         /* Badge on extra card */
         .extra-badge {
             display: inline-flex;
@@ -212,6 +250,29 @@
             width: 6px; height: 6px;
             border-radius: 50%;
             background: var(--gold);
+        }
+
+        /* Badge on entomology card */
+        .entomology-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--entomology);
+            background: rgba(45,139,110,0.14);
+            border: 1px solid var(--entomology-border);
+            border-radius: 20px;
+            padding: 4px 12px;
+            margin-bottom: 18px;
+        }
+        .entomology-badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--entomology);
         }
 
         /* Coming soon card */
@@ -259,7 +320,7 @@
             .subtitle { font-size: 18px; }
             .dom-title { font-size: 24px; }
             .quiz-grid { grid-template-columns: 1fr; gap: 16px; }
-            .quiz-card, .extra-card, .coming-soon-card { padding: 28px 20px; }
+            .quiz-card, .extra-card, .entomology-card, .coming-soon-card { padding: 28px 20px; }
             .header { margin-bottom: 40px; }
             .section-block { margin-bottom: 40px; }
         }
@@ -267,7 +328,7 @@
         @media (max-width: 480px) {
             .title { font-size: 36px; }
             .tagline { font-size: 15px; }
-            .quiz-card h2, .extra-card h2 { font-size: 22px; }
+            .quiz-card h2, .extra-card h2, .entomology-card h2 { font-size: 22px; }
             .quiz-icon { font-size: 44px; }
             .container { padding: 28px 16px 48px; }
         }
@@ -301,7 +362,6 @@
                     <span>📊 946 Questions</span>
                     <span>🔬 5 Topics</span>
                 </div>
-        
             </a>
 
             <a href="biochemistry.HTML" class="quiz-card">
@@ -335,6 +395,30 @@
             </a>
         </div>
     </div>
+
+    <!-- ── NEW: MEDICAL ENTOMOLOGY ── -->
+    <div class="section-block">
+        <div class="section-label">
+            <div class="section-label-line"></div>
+            <span class="section-label-text label-entomology">🦟 Medical Entomology</span>
+            <div class="section-label-line"></div>
+        </div>
+
+        <div class="quiz-grid">
+            <a href="medical-entomology.html" class="entomology-card">
+                <div class="quiz-icon">🦟</div>
+                <div class="entomology-badge">GLI × DOMiNANCE</div>
+                <h2>MEDICAL ENTOMOLOGY</h2>
+                <p>Comprehensive vector biology, disease transmission, and integrated vector management — 4 quiz modules</p>
+                <div class="quiz-stats" style="color:rgba(45,139,110,0.85)">
+                    <span>📚 4 Quiz Modules</span>
+                    <span>🩺 645+ Questions</span>
+                    <span>🔬 9 Topics</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- ── END MEDICAL ENTOMOLOGY ── -->
 
     <!-- EXTRA QUESTIONS -->
     <div class="section-block">
