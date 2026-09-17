@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLI × DOMiNANCE | Medical Entomology Mock</title>
+<style>
+:root {
+  --navy:#17365d;
+  --blue:#1f4e79;
+  --gold:#c9a227;
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#17202a;
+  --muted:#687386;
+  --green:#1f7a4d;
+  --red:#b13a3a;
+  --border:#d9e0ea;
+  --soft-blue:#eef5fb;
+  --soft-gold:#fff9e6;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
+button,input{font:inherit}
+button:focus-visible,input:focus-visible{outline:3px solid rgba(31,78,121,.28);outline-offset:2px}
+.hidden{display:none!important}
+.shell{max-width:960px;margin:0 auto;padding:18px}
+.brandbar{border-top:5px solid var(--gold);background:var(--navy);color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brandbar .brand{font-weight:800;letter-spacing:.3px}
+.brandbar .mini{font-size:12px;opacity:.84;text-align:right}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px}
+.hero{margin-top:24px;text-align:center;padding:36px 28px}
+.hero h1{margin:8px 0 4px;font-size:34px;color:var(--navy)}
+.hero h2{margin:0 0 18px;font-size:18px;color:var(--blue);font-weight:700}
+.goldline{width:84px;height:4px;border-radius:4px;background:var(--gold);margin:18px auto}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0}
+.meta div{background:#f7f9fc;border:1px solid var(--border);padding:12px;border-radius:12px;font-weight:700;color:var(--navy)}
+.motto{font-style:italic;color:var(--navy);margin:22px 0 10px}
+.people{color:var(--blue);font-weight:700;font-size:13px;line-height:1.7}
+.mode-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.mode-card{border:2px solid var(--border);padding:16px;border-radius:14px;text-align:left;cursor:pointer;background:#fff}
+.mode-card.active{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,39,.13)}
+.mode-card strong{color:var(--navy);display:block;margin-bottom:5px}
+.mode-card span{font-size:13px;color:var(--muted)}
+.primary,.secondary,.danger,.ghost{border:0;border-radius:10px;padding:12px 18px;font-weight:800;cursor:pointer}
+.primary{background:var(--navy);color:#fff}
+.secondary{background:var(--gold);color:#17202a}
+.ghost{background:#eef2f7;color:var(--navy)}
+.danger{background:#f9e8e8;color:var(--red)}
+button:disabled{opacity:.58;cursor:not-allowed}
+.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+#resumeBtn{display:none}
+.notice{font-size:13px;color:var(--muted);line-height:1.5;margin-top:12px}
+.workspace{padding-top:18px}
+.toprow{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:12px}
+.progress-wrap{flex:1}
+.progress-text{font-size:13px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.progress{height:9px;background:#e8edf4;border-radius:20px;overflow:hidden}
+.progress > div{height:100%;background:var(--gold);width:0%}
+.timer{font-weight:800;color:var(--navy);min-width:92px;text-align:right}
+.question-card h3{font-size:18px;line-height:1.45;margin:0 0 16px;color:var(--navy)}
+.option{display:block;border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:9px 0;cursor:pointer;background:#fff;transition:.15s}
+.option:hover{border-color:#aebbd0;background:#fafcff}
+.option.selected{border-color:var(--blue);background:var(--soft-blue)}
+.option.correct{border-color:var(--green);background:#edf8f2}
+.option.wrong{border-color:var(--red);background:#fff0f0}
+.option.locked{cursor:default}
+.option input{margin-right:8px}
+.tfrow{border:1px solid var(--border);border-radius:12px;padding:13px;margin:10px 0}
+.tfstatement{font-weight:600;line-height:1.4}
+.tfchoices{display:flex;gap:8px;margin-top:10px}
+.tfchoices button{flex:1;border:1px solid var(--border);background:#fff;border-radius:9px;padding:9px;cursor:pointer;font-weight:700}
+.tfchoices button.selected{background:var(--soft-blue);border-color:var(--blue);color:var(--blue)}
+.tfchoices button.correct{background:#edf8f2;border-color:var(--green);color:var(--green)}
+.tfchoices button.wrong{background:#fff0f0;border-color:var(--red);color:var(--red)}
+.feedback{margin-top:14px;border-left:4px solid var(--gold);background:var(--soft-gold);padding:12px 14px;border-radius:8px;font-size:14px;line-height:1.45}
+.navrow{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.navrow .right{display:flex;gap:8px;flex-wrap:wrap}
+.palette{margin-top:16px}
+.palette-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.palette-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-top:10px}
+.pal{border:1px solid var(--border);background:#fff;border-radius:7px;padding:7px 3px;font-size:12px;cursor:pointer}
+.pal.current{outline:2px solid var(--gold)}
+.pal.answered{background:var(--soft-blue);color:var(--blue);font-weight:800}
+.pal.flagged{box-shadow:inset 0 -3px 0 var(--gold)}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px;border:1px solid var(--border)}
+.legend .l-current::before{outline:2px solid var(--gold)}
+.legend .l-answered::before{background:var(--soft-blue)}
+.legend .l-flagged::before{border-bottom:3px solid var(--gold)}
+.result-card h2{color:var(--navy);text-align:center}
+.scorebig{font-size:52px;font-weight:900;color:var(--blue);text-align:center;margin:12px 0 0}
+.percent{text-align:center;color:var(--muted);font-weight:700;margin-bottom:16px}
+.breakdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}
+.breakdown div{border:1px solid var(--border);border-radius:12px;padding:13px;text-align:center}
+.review-item{border-top:1px solid var(--border);padding:14px 0;line-height:1.5}
+.review-item:first-child{border-top:0}
+.review-item strong{color:var(--navy)}
+.review-option.correct{color:var(--green);font-weight:700}
+.review-option.wrong{color:var(--red);font-weight:700}
+.statusline{font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
+.shortcuts{margin-top:14px;padding:11px 12px;border:1px dashed #b7c3d4;border-radius:10px;background:#fafcff;color:var(--muted);font-size:12px;line-height:1.7}
+.shortcuts kbd{display:inline-block;min-width:25px;text-align:center;padding:2px 6px;margin:0 2px;border:1px solid #cbd4df;border-bottom-width:2px;border-radius:5px;background:#fff;color:var(--navy);font-weight:800;font-family:inherit}
+.tfrow.active-tf{outline:2px solid var(--gold);outline-offset:1px;background:#fffdf5}
+@media(max-width:680px){
+  .shell{padding:10px} .hero{padding:24px 16px} .hero h1{font-size:27px}
+  .meta{grid-template-columns:1fr} .mode-wrap{grid-template-columns:1fr}
+  .palette-grid{grid-template-columns:repeat(8,1fr)} .breakdown{grid-template-columns:1fr 1fr}
+  .navrow{flex-direction:column} .navrow .right{width:100%} .navrow button{flex:1}
+  .toprow{align-items:flex-start} .timer{font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="brandbar">
+  <div class="brand">GLI × DOMiNANCE</div>
+  <div class="mini">MEDICAL ENTOMOLOGY<br>Powered by Grace-Led Systems</div>
+</div>
+
+<div class="shell">
+  <section id="landing" class="card hero">
+    <div style="font-size:13px;font-weight:800;color:var(--gold);letter-spacing:1.4px">COMPREHENSIVE MOCK EXAMINATION</div>
+    <h1>Medical Entomology</h1>
+    <h2>200 Questions • 200 Marks</h2>
+    <div class="goldline"></div>
+    <div class="meta">
+      <div>169 SBA</div>
+      <div>31 Multi-Statement T/F</div>
+      <div>0.25 per T/F statement</div>
+    </div>
+
+    <div style="font-weight:800;color:var(--navy);margin-top:20px">Choose your mode before starting</div>
+    <div class="mode-wrap">
+      <button type="button" class="mode-card active" data-mode="instant">
+        <strong>Instant Mode</strong>
+        <span>Each answer is marked immediately, locked, and followed by an explanation.</span>
+      </button>
+      <button type="button" class="mode-card" data-mode="submit">
+        <strong>Submit Mode</strong>
+        <span>Change answers freely while working. Marking is revealed only after final submission.</span>
+      </button>
+    </div>
+
+    <div class="actions">
+      <button type="button" id="startBtn" class="primary">Start Mock</button>
+      <button type="button" id="resumeBtn" class="secondary">Resume Mock</button>
+      <button type="button" id="clearBtn" class="ghost hidden">Clear Saved Progress</button>
+    </div>
+
+    <div class="motto">“As you getlockedin with the books, stay lockedin with GOD.”</div>
+    <div class="people">BYJ • AK • RQ • BO • NNK • MSF • GAOD • ATE • PJO • OFK</div>
+    <div id="storageNotice" class="notice">Progress is saved automatically in this browser after you begin. Resume appears only when a genuine saved attempt exists.</div>
+    <div class="shortcuts">
+      <strong>Keyboard shortcuts:</strong>
+      SBA: <kbd>A</kbd>–<kbd>E</kbd> answer •
+      T/F: <kbd>1</kbd>–<kbd>4</kbd> choose statement, then <kbd>T</kbd>/<kbd>F</kbd> •
+      <kbd>←</kbd>/<kbd>→</kbd> previous/next • <kbd>Enter</kbd> next •
+      <kbd>X</kbd> flag • <kbd>U</kbd> first unanswered • <kbd>Esc</kbd> exit
+    </div>
+  </section>
+
+  <section id="workspace" class="workspace hidden">
+    <div class="toprow">
+      <div class="progress-wrap">
+        <div class="progress-text">
+          <span id="progressText"></span>
+          <span id="answeredText"></span>
+        </div>
+        <div class="progress"><div id="progressBar"></div></div>
+      </div>
+      <div class="timer" id="timer">00:00:00</div>
+    </div>
+    <div class="shortcuts" style="margin:0 0 12px">
+      <strong>Keys:</strong> SBA <kbd>A</kbd>–<kbd>E</kbd> • T/F <kbd>1</kbd>–<kbd>4</kbd> then <kbd>T</kbd>/<kbd>F</kbd> •
+      <kbd>←</kbd>/<kbd>→</kbd> navigate • <kbd>X</kbd> flag • <kbd>U</kbd> unanswered • <kbd>Esc</kbd> exit
+    </div>
+
+    <div class="card question-card">
+      <h3 id="questionStem"></h3>
+      <div id="answerArea"></div>
+      <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+
+      <div class="navrow">
+        <div>
+          <button type="button" class="ghost" id="prevBtn">Previous</button>
+          <button type="button" class="ghost" id="flagBtn">Flag</button>
+        </div>
+        <div class="right">
+          <button type="button" class="danger" id="exitBtn">Exit</button>
+          <button type="button" class="primary" id="nextBtn">Next Question</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card palette">
+      <div class="palette-head">
+        <button type="button" class="ghost" id="paletteToggle">Question Navigator</button>
+        <button type="button" class="ghost" id="firstUnansweredBtn">Go to First Unanswered</button>
+      </div>
+      <div class="legend">
+        <span class="l-current">Current</span>
+        <span class="l-answered">Answered</span>
+        <span class="l-flagged">Flagged</span>
+      </div>
+      <div id="paletteGrid" class="palette-grid hidden"></div>
+      <div class="actions" style="justify-content:flex-end">
+        <button type="button" class="secondary" id="submitBtn">Submit Mock</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" class="card result-card hidden">
+    <h2>Mock Completed</h2>
+    <div class="scorebig" id="scoreBig"></div>
+    <div class="percent" id="percentText"></div>
+    <div class="breakdown">
+      <div><strong id="sbaScore"></strong><br><span>SBA marks</span></div>
+      <div><strong id="tfScore"></strong><br><span>T/F marks</span></div>
+      <div><strong id="answeredCount"></strong><br><span>Attempted</span></div>
+      <div><strong id="timeTaken"></strong><br><span>Time</span></div>
+    </div>
+    <div class="actions">
+      <button type="button" class="primary" id="reviewBtn">Review Answers</button>
+      <button type="button" class="ghost" id="restartBtn">Start Fresh Attempt</button>
+    </div>
+    <div id="reviewArea" class="hidden" style="margin-top:20px"></div>
+  </section>
+</div>
+
+<script>
+const QUESTIONS = [{"id": 1, "type": "tf", "stem": "Concerning anopheline mosquitoes, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Anopheles larvae characteristically lack a respiratory siphon.", "answer": true, "explanation": "TRUE - Anopheles larvae breathe through spiracles and typically lack the culicine siphon."}, {"roman": "II", "text": "Anopheles larvae usually lie parallel to the water surface.", "answer": true, "explanation": "TRUE - Their horizontal surface position is a key larval discriminator."}, {"roman": "III", "text": "Adult female Anopheles have maxillary palps about as long as the proboscis.", "answer": true, "explanation": "TRUE - Long female palps distinguish Anopheles from most culicine females."}, {"roman": "IV", "text": "Adult Anopheles characteristically rest parallel to the supporting surface.", "answer": false, "explanation": "FALSE - Adult Anopheles usually rest at a marked angle, while culicines tend to rest parallel."}], "explanation": "Each statement is marked independently."}, {"id": 2, "type": "sba", "stem": "Approximately how many eggs may a gravid female scabies mite deposit per day?", "options": ["20-30", "10-15", "50-100", "2-3", "One every month"], "answer": "D", "explanation": "2-3 is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 3, "type": "sba", "stem": "Which sequence describes hard-tick development?", "options": ["Egg - larva - pupa - fully developed adult tick", "Egg - 8-legged larva - single nymphal stage - adult", "Egg - 6-legged larva - pupa - 8-legged adult", "Egg - 6-legged larva - 8-legged nymph - adult", "Egg - nymph - pupa - adult without a larval stage"], "answer": "D", "explanation": "Egg - 6-legged larva - 8-legged nymph - adult is correct because it matches the hard/soft tick morphology, feeding pattern, disease association or control principle being tested."}, {"id": 4, "type": "sba", "stem": "Which sequence best describes scabies development?", "options": ["Egg - larva - pupa - adult", "Egg - larva - nymph - adult", "Egg - adult", "Egg - nymph - pupa - adult", "Egg - pupa - adult"], "answer": "B", "explanation": "Egg - larva - nymph - adult is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 5, "type": "sba", "stem": "The dermoscopic 'jet with contrail' sign represents:", "options": ["A bedbug hidden within a narrow mattress seam", "A tick capitulum embedded deeply in host skin", "A mite at the end of its burrow", "A cluster of louse eggs attached to the hair shaft", "A mosquito larva hanging beneath the water surface"], "answer": "C", "explanation": "A mite at the end of its burrow is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 6, "type": "tf", "stem": "Concerning insect circulation, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Insects possess an open circulatory system.", "answer": true, "explanation": "TRUE - Haemolymph circulates through the haemocoel rather than a closed arterial-venous network."}, {"roman": "II", "text": "Haemolymph is confined to arteries and veins.", "answer": false, "explanation": "FALSE - Insects do not have a closed system of true arteries and veins."}, {"roman": "III", "text": "The anterior aorta carries haemolymph away from the head toward the abdomen.", "answer": false, "explanation": "FALSE - The anterior aorta carries haemolymph toward the head/brain."}, {"roman": "IV", "text": "Haemolymph is the principal carrier of oxygen to insect tissues.", "answer": false, "explanation": "FALSE - Oxygen reaches tissues mainly through the tracheal system."}], "explanation": "Each statement is marked independently."}, {"id": 7, "type": "sba", "stem": "A hard tick female and a soft tick female are compared over their lifetimes. Which statement best reflects the lecture comparison?", "options": ["One large hard-tick egg batch; several smaller soft-tick batches", "Neither group lays eggs after taking a blood meal.", "Hard ticks lay several small batches after repeated adult meals.", "The soft tick lays one large batch of several thousand eggs.", "Both groups lay a single batch of about 400 eggs."], "answer": "A", "explanation": "Hard ticks characteristically have one major oviposition event with a much larger total egg output; soft ticks lay smaller batches on several occasions."}, {"id": 8, "type": "sba", "stem": "Jaundice in severe yellow fever primarily reflects damage to the:", "options": ["skin", "liver", "spleen", "pancreas", "bone marrow"], "answer": "B", "explanation": "liver is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 9, "type": "sba", "stem": "Which sequence describes louse development?", "options": ["Egg - nymph - pupa - adult", "Egg - larva - adult", "Egg - larva - pupa - adult", "Egg - nymph - adult", "Egg - pupa - adult"], "answer": "D", "explanation": "Egg - nymph - adult is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 10, "type": "sba", "stem": "Which environmental factor promotes scabies spread?", "options": ["Overcrowding", "Chlorinated water", "High altitude", "Bright sunlight", "Low humidity alone"], "answer": "A", "explanation": "Overcrowding is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 11, "type": "tf", "stem": "Concerning pediculosis, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Pruritus may result from sensitization to louse feeding.", "answer": true, "explanation": "TRUE - Louse feeding can trigger itching and irritation."}, {"roman": "II", "text": "Excoriation may predispose to secondary bacterial infection.", "answer": true, "explanation": "TRUE - Scratching disrupts the skin barrier."}, {"roman": "III", "text": "Nits may remain firmly attached to hair or clothing fibres.", "answer": true, "explanation": "TRUE - Louse eggs are cemented to their substrate."}, {"roman": "IV", "text": "Human lice undergo incomplete metamorphosis without a pupal stage.", "answer": true, "explanation": "TRUE - Their development is egg -> nymph -> adult."}], "explanation": "Each statement is marked independently."}, {"id": 12, "type": "sba", "stem": "Which feature distinguishes Exopterygota from Endopterygota during development?", "options": ["Exopterygota always possess a pupal stage.", "Endopterygota develop as nymphs without larvae.", "Endopterygota lack metamorphosis completely.", "In Exopterygota, developing wings are visible externally on immature stages.", "Exopterygota develop their wings internally during a larval stage."], "answer": "D", "explanation": "Exopterygota show external wing development and incomplete metamorphosis; Endopterygota develop wings internally and undergo complete metamorphosis."}, {"id": 13, "type": "sba", "stem": "An adult mosquito rests at a marked angle to the supporting surface and has long maxillary palps. Which genus is most likely?", "options": ["Culicoides", "Anopheles", "Mansonia", "Culex", "Aedes"], "answer": "B", "explanation": "Anopheles is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 14, "type": "sba", "stem": "Which trypanosome is particularly virulent in pigs?", "options": ["Trypanosoma cruzi", "Trypanosoma vivax", "Trypanosoma simiae", "Trypanosoma brucei brucei", "Trypanosoma brucei gambiense"], "answer": "C", "explanation": "Trypanosoma simiae is correct because it matches the characteristic biology or medical importance of Glossina and African trypanosomiasis."}, {"id": 15, "type": "sba", "stem": "Indoor residual spraying is most effective against vectors that:", "options": ["remain on aquatic plants", "feed only high in forest canopies", "never enter houses", "rest on treated indoor surfaces", "live permanently in water"], "answer": "D", "explanation": "rest on treated indoor surfaces is correct because integrated vector management uses evidence-based, complementary interventions selected according to local vector ecology."}, {"id": 16, "type": "sba", "stem": "The anterior false head of Sarcoptes scabiei is the:", "options": ["tegmen", "capitulum", "halter", "siphon", "scutum"], "answer": "B", "explanation": "capitulum is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 17, "type": "sba", "stem": "Which sex of medically important Culicoides principally takes blood meals?", "options": ["Male", "Larva only", "Female", "Both sexes equally", "Neither sex"], "answer": "C", "explanation": "Female is correct because it matches the vector, morphology, transmission route, clinical association or control method described."}, {"id": 18, "type": "sba", "stem": "Which vector-parasite association is correctly matched?", "options": ["Anopheles - Loa loa", "Culex - Trypanosoma brucei", "Mansonia - Brugia malayi", "Simulium - Wuchereria bancrofti", "Aedes - Onchocerca volvulus"], "answer": "C", "explanation": "Mansonia - Brugia malayi is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 19, "type": "sba", "stem": "Biological transmission differs from mechanical transmission because the pathogen:", "options": ["cannot reach salivary glands", "develops or multiplies within the vector", "is never ingested by the vector", "must remain only on the vector surface", "must be transmitted by a non-biting insect"], "answer": "B", "explanation": "develops or multiplies within the vector is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 20, "type": "sba", "stem": "A mosquito that preferentially rests indoors is described as:", "options": ["endophilic", "crepuscular", "anthropophilic", "endophagic", "exophagic"], "answer": "A", "explanation": "endophilic is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 21, "type": "sba", "stem": "Infants with scabies are more likely than healthy adults to have involvement of the:", "options": ["scalp, palms and soles", "conjunctiva only", "liver and spleen", "kidneys only", "lungs and pleura"], "answer": "A", "explanation": "scalp, palms and soles is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 22, "type": "sba", "stem": "Which method is useful for collecting mosquitoes resting on walls or vegetation?", "options": ["Flotation", "Aquatic dipping", "Blanket dragging", "Backpack aspiration", "Manual combing"], "answer": "D", "explanation": "Backpack aspiration is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 23, "type": "sba", "stem": "The spermatheca is important because it:", "options": ["stores sperm after mating", "pumps haemolymph", "secretes digestive enzymes", "forms the cuticle", "produces eggs"], "answer": "A", "explanation": "stores sperm after mating is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 24, "type": "sba", "stem": "Which structure carries oxygen most directly to insect tissues?", "options": ["Ostia", "Malpighian tubules", "Haemocytes", "Ovarioles", "Tracheoles"], "answer": "E", "explanation": "Tracheoles is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 25, "type": "tf", "stem": "Concerning insect reproduction, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Fertilization in insects is generally external.", "answer": false, "explanation": "FALSE - Fertilization is generally internal."}, {"roman": "II", "text": "Ovarioles are components of the male reproductive system.", "answer": false, "explanation": "FALSE - Ovarioles are tubular units of the female ovaries."}, {"roman": "III", "text": "The spermatheca is the main organ for digestion of a blood meal.", "answer": false, "explanation": "FALSE - The spermatheca stores sperm after mating."}, {"roman": "IV", "text": "Accessory glands have no role in insect reproduction.", "answer": false, "explanation": "FALSE - Accessory-gland secretions contribute to mating products and/or egg protection and attachment."}], "explanation": "Each statement is marked independently."}, {"id": 26, "type": "sba", "stem": "Which infection can be transmitted by the human body louse?", "options": ["Dengue fever", "Malaria", "Louse-borne relapsing fever", "Visceral leishmaniasis", "Onchocerciasis"], "answer": "C", "explanation": "Louse-borne relapsing fever is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 27, "type": "sba", "stem": "Which feature of the hard-tick scutum shows marked sexual dimorphism?", "options": ["It is present only during the larval stage.", "It forms the respiratory opening in both sexes.", "It is ventral in the male and dorsal in the female.", "It is proportionally larger in the male than in the female.", "It is absent in the male but complete in the female."], "answer": "D", "explanation": "The hard chitinous scutum is proportionally extensive in male ixodid ticks and smaller in females, allowing female abdominal expansion during feeding."}, {"id": 28, "type": "sba", "stem": "Which modified structure functions as a gyroscopic organ in mosquitoes?", "options": ["Tarsus", "Proboscis", "Halter", "Scutum", "Scutellum"], "answer": "C", "explanation": "Halter is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 29, "type": "sba", "stem": "Which combination is most characteristic of Aedes aegypti?", "options": ["Aquatic plant attachment and nocturnal biting", "Brackish marshes and angled resting", "Fast-flowing rivers and humped larvae", "Polluted drains, nocturnal biting and plain brown scaling", "Container breeding, daytime biting and black-white scaling"], "answer": "E", "explanation": "Container breeding, daytime biting and black-white scaling is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 30, "type": "sba", "stem": "Which fly is associated with transmission of Loa loa?", "options": ["Simulium", "Chrysops", "Culicoides", "Musca", "Glossina"], "answer": "B", "explanation": "Chrysops is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 31, "type": "tf", "stem": "Concerning scabies burrowing, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "The female normally burrows deep into skeletal muscle.", "answer": false, "explanation": "FALSE - The parasite remains in the superficial epidermal layer, not skeletal muscle."}, {"roman": "II", "text": "The female scabies mite burrows mainly in the stratum corneum.", "answer": true, "explanation": "TRUE - The gravid female forms a tunnel within the superficial keratinized epidermis."}, {"roman": "III", "text": "The tunnel usually runs perpendicular to the skin surface.", "answer": false, "explanation": "FALSE - The burrow generally extends roughly parallel to the skin surface."}, {"roman": "IV", "text": "The female normally remains at the open entrance of the tunnel while feeding.", "answer": false, "explanation": "FALSE - She is typically found at the blind end while advancing the burrow."}], "explanation": "Each statement is marked independently."}, {"id": 32, "type": "sba", "stem": "Why is mosquito longevity important for malaria transmission?", "options": ["It creates additional larval instars", "It produces a pupal blood meal", "It allows completion of parasite development in the vector", "It prevents oviposition", "It eliminates the extrinsic incubation period"], "answer": "C", "explanation": "It allows completion of parasite development in the vector is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 33, "type": "sba", "stem": "Which mosquito mouthpart contains the salivary canal?", "options": ["Antenna", "Hypopharynx", "Maxillary palp", "Labium", "Labrum"], "answer": "B", "explanation": "Hypopharynx is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 34, "type": "sba", "stem": "Which species is the primary human botfly?", "options": ["Simulium damnosum", "Cimex lectularius", "Musca domestica", "Dermatobia hominis", "Glossina morsitans"], "answer": "D", "explanation": "Dermatobia hominis is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 35, "type": "sba", "stem": "A mosquito larva lies parallel to the water surface and lacks a respiratory siphon. Which genus is most likely?", "options": ["Aedes", "Anopheles", "Glossina", "Mansonia", "Culex"], "answer": "B", "explanation": "Anopheles is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 36, "type": "sba", "stem": "Which stage is absent in hemimetabolous development?", "options": ["Adult", "Instar", "Egg", "Pupa", "Nymph"], "answer": "D", "explanation": "Pupa is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 37, "type": "tf", "stem": "Concerning effective vector control, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Vector behaviour can influence the choice of intervention.", "answer": true, "explanation": "TRUE - Feeding and resting behaviour determine which control tools can actually contact the vector."}, {"roman": "II", "text": "Monitoring outcomes can guide later programme decisions.", "answer": true, "explanation": "TRUE - Surveillance and evaluation show whether an intervention is working and whether it needs adjustment."}, {"roman": "III", "text": "One control method is always optimal for every vector species.", "answer": false, "explanation": "FALSE - IVM is adapted to local vector ecology; no single method is universally optimal."}, {"roman": "IV", "text": "Community participation may support sustainable vector control.", "answer": true, "explanation": "TRUE - Community uptake is important for source reduction and other sustained interventions."}], "explanation": "Each statement is marked independently."}, {"id": 38, "type": "sba", "stem": "Which sequence describes cockroach development?", "options": ["Egg - larva - pupa - adult", "Ootheca - pupa - adult", "Egg - pupa - adult", "Ootheca - nymph - adult", "Ootheca - larva - pupa - adult"], "answer": "D", "explanation": "Ootheca - nymph - adult is correct because it matches the vector, morphology, transmission route, clinical association or control method described."}, {"id": 39, "type": "sba", "stem": "Which finding strongly suggests an established bedbug infestation?", "options": ["Faecal spotting in mattress seams with hidden bugs", "Fine serpentine burrows within the interdigital web spaces", "Larvae attached to the submerged roots of aquatic plants", "Floating rafts of mosquito eggs on stagnant household water", "Nits firmly cemented along individual scalp hair shafts"], "answer": "A", "explanation": "Faecal spotting in mattress seams with hidden bugs is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 40, "type": "sba", "stem": "Which louse primarily inhabits scalp hair?", "options": ["Pubic louse", "Bedbug", "Body louse", "Soft tick", "Head louse"], "answer": "E", "explanation": "Head louse is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 41, "type": "sba", "stem": "Which finding can confirm scabies microscopically?", "options": ["A microfilaria only", "A mite, egg or scybala", "A cercaria only", "A trypomastigote only", "A sporozoite only"], "answer": "B", "explanation": "A mite, egg or scybala is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 42, "type": "sba", "stem": "Ornithodoros moubata is associated with:", "options": ["Human African trypanosomiasis transmitted by tsetse flies", "African tick-borne relapsing fever", "Lyme borreliosis caused by Borrelia burgdorferi", "Rocky Mountain spotted fever caused by rickettsiae", "Onchocerciasis transmitted by blackflies"], "answer": "B", "explanation": "African tick-borne relapsing fever is correct because it matches the hard/soft tick morphology, feeding pattern, disease association or control principle being tested."}, {"id": 43, "type": "sba", "stem": "Black vomit in severe yellow fever is associated with:", "options": ["pulmonary oedema", "haemoglobinuria", "lymphatic rupture", "gastrointestinal haemorrhage", "biliary obstruction"], "answer": "D", "explanation": "gastrointestinal haemorrhage is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 44, "type": "tf", "stem": "Concerning human lice, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "The body louse normally fixes its eggs exclusively to scalp hair.", "answer": false, "explanation": "FALSE - Body-louse eggs are commonly attached to clothing fibres and seams."}, {"roman": "II", "text": "Pthirus pubis is characteristically long and slender.", "answer": false, "explanation": "FALSE - The pubic louse is broad and squat, giving it a crab-like appearance."}, {"roman": "III", "text": "The head louse primarily inhabits scalp hair.", "answer": true, "explanation": "TRUE - Pediculus humanus capitis is adapted to scalp hair."}, {"roman": "IV", "text": "All human lice are equally important vectors of epidemic typhus.", "answer": false, "explanation": "FALSE - The body louse is the important vector of epidemic typhus."}], "explanation": "Each statement is marked independently."}, {"id": 45, "type": "sba", "stem": "Which trap selectively samples female mosquitoes ready to lay eggs?", "options": ["Sifter", "Berlese funnel", "Gravid trap", "Blanket drag", "Aquatic net"], "answer": "C", "explanation": "Gravid trap is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 46, "type": "sba", "stem": "Which mosquito is central to urban yellow-fever transmission?", "options": ["Aedes simpsoni", "Aedes aegypti", "Culex decens", "Anopheles funestus", "Aedes africanus"], "answer": "B", "explanation": "Aedes aegypti is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 47, "type": "sba", "stem": "Which filarial parasite is associated with Culicoides transmission?", "options": ["Loa loa", "Mansonella perstans", "Wuchereria bancrofti", "Brugia malayi", "Onchocerca volvulus"], "answer": "B", "explanation": "Mansonella perstans is correct because it matches the vector, morphology, transmission route, clinical association or control method described."}, {"id": 48, "type": "sba", "stem": "Which feature is characteristic of a hard tick?", "options": ["A ventral capitulum hidden from above", "Repeated brief adult feeding", "Several nymphal stages", "No scutum", "A dorsal scutum"], "answer": "E", "explanation": "A dorsal scutum is correct because it matches the hard/soft tick morphology, feeding pattern, disease association or control principle being tested."}, {"id": 49, "type": "sba", "stem": "Why should close household contacts be treated simultaneously for scabies?", "options": ["Treatment gives lifelong immunity", "They may be infested before symptoms appear", "Treatment prevents mosquito breeding", "Only contacts can transmit mites", "The mite is airborne"], "answer": "B", "explanation": "They may be infested before symptoms appear is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 50, "type": "tf", "stem": "Concerning scabies management, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Household members are generally treated simultaneously.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "II", "text": "Pruritus may persist after successful treatment.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "III", "text": "Clothing and bedding should never be heat-treated during scabies control.", "answer": false, "explanation": "FALSE - Hot washing/drying is an important environmental control measure for recently used items."}, {"roman": "IV", "text": "Persistent itching for a few days always means treatment failure.", "answer": false, "explanation": "FALSE - Post-scabetic itch may persist for 2-4 weeks despite eradication."}], "explanation": "Each statement is marked independently."}, {"id": 51, "type": "sba", "stem": "Which part of the insect gut is the major site of digestion and absorption?", "options": ["Rectum", "Proventriculus", "Oesophagus", "Crop", "Midgut"], "answer": "E", "explanation": "Midgut is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 52, "type": "sba", "stem": "Which measure can help bring a myiasis larva toward the skin surface by limiting oxygen?", "options": ["Giving chloroquine", "Occluding the opening with petroleum jelly", "Applying a larvicide to drinking water", "Applying a gravid trap", "Using a mosquito net"], "answer": "B", "explanation": "Occluding the opening with petroleum jelly is correct because it matches the vector, morphology, transmission route, clinical association or control method described."}, {"id": 53, "type": "sba", "stem": "Which mosquito is a principal vector of dengue?", "options": ["Aedes aegypti", "Glossina morsitans", "Anopheles funestus", "Culex decens", "Mansonia uniformis"], "answer": "A", "explanation": "Aedes aegypti is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 54, "type": "sba", "stem": "A vector population becomes resistant to a repeatedly used insecticide. What is the most appropriate IVM response?", "options": ["Review resistance data and adapt the strategy", "Continue unchanged indefinitely", "Stop all control", "Increase breeding sites", "Treat only febrile patients"], "answer": "A", "explanation": "Review resistance data and adapt the strategy is correct because integrated vector management uses evidence-based, complementary interventions selected according to local vector ecology."}, {"id": 55, "type": "sba", "stem": "Sarcoptes scabiei belongs to which class?", "options": ["Crustacea", "Diplopoda", "Chilopoda", "Arachnida", "Insecta"], "answer": "D", "explanation": "Arachnida is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 56, "type": "sba", "stem": "Which method is particularly appropriate for collecting wingless ectoparasites from a host?", "options": ["CDC light trapping", "Gravid trapping", "Manual combing", "Aquatic netting", "Emergence trapping"], "answer": "C", "explanation": "Manual combing is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 57, "type": "tf", "stem": "Concerning biting midges, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Culicoides are small dipteran insects.", "answer": true, "explanation": "TRUE - Culicoides are minute biting midges within Diptera."}, {"roman": "II", "text": "Males are the principal blood-feeding sex.", "answer": false, "explanation": "FALSE - Males are not the principal vertebrate blood-feeding sex; females are."}, {"roman": "III", "text": "Females may obtain blood meals from vertebrate hosts.", "answer": true, "explanation": "TRUE - Female biting midges are the medically important blood-feeding sex."}, {"roman": "IV", "text": "Their small size may allow them to pass through ordinary coarse netting.", "answer": true, "explanation": "TRUE - Their minute size can make physical exclusion more difficult."}], "explanation": "Each statement is marked independently."}, {"id": 58, "type": "sba", "stem": "Persistent itching for a short period after successful scabies treatment may result from:", "options": ["Formation of a pupal stage beneath the epidermal surface", "Persistent hypersensitivity after mite eradication", "Immediate development of a new malarial blood-stage infection", "Continued growth of mosquito larvae within the treated skin", "Definite persistence of living mites despite adequate treatment"], "answer": "B", "explanation": "Persistent hypersensitivity after mite eradication is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 59, "type": "sba", "stem": "Which fly is identified in the lecture as the primary screwworm fly?", "options": ["Cochliomyia hominivorax", "Musca domestica", "Oestrus ovis", "Dermatobia hominis", "Cordylobia anthropophaga"], "answer": "A", "explanation": "Cochliomyia hominivorax is the primary screwworm fly; Dermatobia hominis is the primary human botfly."}, {"id": 60, "type": "sba", "stem": "Which structure of the insect hindgut contributes importantly to water conservation?", "options": ["Ostia", "Ovarioles", "Rectal papillae", "Chelicerae", "Halteres"], "answer": "C", "explanation": "Rectal papillae reabsorb water from the forming fecal material and are important for conserving body water."}, {"id": 61, "type": "sba", "stem": "Which component of the saliva of a blood-sucking insect helps maintain blood flow during feeding?", "options": ["An anticoagulant", "A chitin-digesting enzyme", "A pupal hormone", "A spermatophore", "A respiratory pigment"], "answer": "A", "explanation": "Anticoagulant components in saliva inhibit clotting at the bite site and help maintain blood flow during a blood meal."}, {"id": 62, "type": "sba", "stem": "Which structure acts as a sheath around the piercing stylets of a mosquito?", "options": ["Halter", "Labrum", "Hypopharynx", "Labium", "Mandible"], "answer": "D", "explanation": "Labium is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 63, "type": "sba", "stem": "After pinning tsetse flies for transport, they should be:", "options": ["Kept loosely inside a gravid mosquito trap until identification", "Wrapped in soft tissue or cotton in a labelled box", "Left uncovered in direct sunlight during transport to the laboratory", "Immersed in distilled water in an unlabelled specimen container", "Rinsed repeatedly in normal saline before dry transport"], "answer": "B", "explanation": "Wrapped in soft tissue or cotton in a labelled box is correct because it matches the characteristic biology or medical importance of Glossina and African trypanosomiasis."}, {"id": 64, "type": "tf", "stem": "Concerning medically important culicines, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Culex species may transmit arboviruses.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "II", "text": "Aedes aegypti is not involved in yellow-fever transmission.", "answer": false, "explanation": "FALSE - Aedes aegypti is the key urban yellow-fever vector."}, {"roman": "III", "text": "Mansonia species may transmit lymphatic filariasis.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "IV", "text": "Aedes mosquitoes are the principal vectors of human malaria.", "answer": false, "explanation": "FALSE - Human malaria is transmitted by female Anopheles mosquitoes."}], "explanation": "Each statement is marked independently."}, {"id": 65, "type": "sba", "stem": "Why is vector surveillance important in IVM?", "options": ["It guarantees eradication", "It replaces community participation", "It guides intervention choice and evaluation", "It removes the need for identification", "It prevents all resistance"], "answer": "C", "explanation": "It guides intervention choice and evaluation is correct because integrated vector management uses evidence-based, complementary interventions selected according to local vector ecology."}, {"id": 66, "type": "sba", "stem": "The female scabies mite burrows principally within the:", "options": ["dermis", "stratum corneum", "bloodstream", "skeletal muscle", "subcutaneous fat"], "answer": "B", "explanation": "stratum corneum is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 67, "type": "sba", "stem": "Cockroaches are medically important mainly because they:", "options": ["mechanically contaminate food and equipment", "inject pathogens during blood meals", "produce malaria sporozoites", "invade human tissues as adults", "transmit only helminths"], "answer": "A", "explanation": "mechanically contaminate food and equipment is correct because it matches the vector, morphology, transmission route, clinical association or control method described."}, {"id": 68, "type": "sba", "stem": "In the male insect reproductive tract, where is sperm stored before mating?", "options": ["Spermatheca", "Ovariole", "Crop", "Rectal papilla", "Seminal vesicle"], "answer": "E", "explanation": "The seminal vesicle stores sperm before mating; the spermatheca is the female sperm-storage organ."}, {"id": 69, "type": "sba", "stem": "Which structure is the principal blood vessel of an insect?", "options": ["Tracheal trunk", "Malpighian tubule", "Dorsal vessel", "Ventral nerve cord", "Peritrophic membrane"], "answer": "C", "explanation": "Dorsal vessel is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 70, "type": "sba", "stem": "What is the spermatophore?", "options": ["The terminal segment of a mosquito abdomen", "A respiratory chamber in aquatic larvae", "The shed cuticle after ecdysis", "A waterproof egg case made by cockroaches only", "A sperm package transferred during mating"], "answer": "E", "explanation": "Male accessory-gland secretions combine with sperm to form the spermatophore transferred to the female during mating."}, {"id": 71, "type": "sba", "stem": "A patient removes an attached hard tick but reports that the original bite was scarcely noticed. Which property of hard ticks is consistent with this?", "options": ["They feed only during the larval stage.", "Their bites may be painless.", "Their adults never feed on blood.", "They lack host-sensing organs.", "Their capitulum is always hidden from above."], "answer": "B", "explanation": "Hard ticks are obligate blood-feeding ectoparasites, and the bite itself may be painless."}, {"id": 72, "type": "sba", "stem": "Which statement best describes a mosquito pupa?", "options": ["It is a winged reproductive stage", "It is a burrowing skin parasite", "It is terrestrial and blood-feeding", "It is aquatic and non-feeding", "It is an aquatic feeding stage"], "answer": "D", "explanation": "It is aquatic and non-feeding is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 73, "type": "sba", "stem": "The principal direct medical effect of bedbug feeding is:", "options": ["lymphatic obstruction", "onchocerciasis", "skin myiasis", "malaria transmission", "pruritic bite reactions"], "answer": "E", "explanation": "pruritic bite reactions is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 74, "type": "sba", "stem": "A tick lacks a dorsal scutum and has a ventral capitulum. It most likely belongs to:", "options": ["Culicidae", "Glossinidae", "Argasidae", "Ixodidae", "Simuliidae"], "answer": "C", "explanation": "Argasidae is correct because it matches the hard/soft tick morphology, feeding pattern, disease association or control principle being tested."}, {"id": 75, "type": "sba", "stem": "After an arbovirus escapes the mosquito gut, it may disseminate through the:", "options": ["haemocoel", "spermatheca", "crop", "rectum", "tracheal valve"], "answer": "A", "explanation": "haemocoel is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 76, "type": "sba", "stem": "Persistence of an infection through successive developmental stages of a vector is:", "options": ["transovarial transmission", "vertical oviposition", "direct transmission", "mechanical transmission", "transstadial transmission"], "answer": "E", "explanation": "transstadial transmission is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 77, "type": "sba", "stem": "Which mosquito is an important vector of Japanese encephalitis?", "options": ["Anopheles gambiae", "Aedes aegypti", "Culicoides species", "Mansonia uniformis", "Culex tritaeniorhynchus"], "answer": "E", "explanation": "Culex tritaeniorhynchus is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 78, "type": "sba", "stem": "Which fly is the vector of onchocerciasis?", "options": ["Musca", "Dermatobia", "Mansonia", "Simulium", "Glossina"], "answer": "D", "explanation": "Simulium is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 79, "type": "sba", "stem": "Why is crusted scabies especially contagious?", "options": ["It has a pupal stage", "It invades blood vessels", "It produces airborne eggs", "It is mosquito-borne", "It contains very large numbers of mites"], "answer": "E", "explanation": "It contains very large numbers of mites is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 80, "type": "sba", "stem": "Passage of a virus from an infected female mosquito to her eggs is:", "options": ["horizontal contamination", "gonotrophic transmission", "transovarial transmission", "transstadial transmission", "mechanical transmission"], "answer": "C", "explanation": "transovarial transmission is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 81, "type": "sba", "stem": "Which measure is specifically listed for personal protection against tick exposure?", "options": ["Applying larvicides to drains", "Use of repellents and protective or impregnated clothing", "Sleeping under untreated mosquito nets only", "Using gravid traps indoors", "Removing aquatic vegetation around houses"], "answer": "B", "explanation": "The tick-control lecture lists avoidance, repellents, protective/impregnated clothing and appropriate tick removal among control measures."}, {"id": 82, "type": "sba", "stem": "Which stage of Sarcoptes has six legs?", "options": ["Adult female", "Larva", "Adult male", "Nymph", "Egg"], "answer": "B", "explanation": "Larva is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 83, "type": "sba", "stem": "Which Plasmodium species has a 24-hour quotidian cycle?", "options": ["Plasmodium vivax", "Plasmodium malariae", "Plasmodium ovale", "Plasmodium knowlesi", "Plasmodium falciparum"], "answer": "D", "explanation": "Plasmodium knowlesi is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 84, "type": "tf", "stem": "Concerning crusted scabies, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Crusted scabies usually contains fewer mites than classical scabies.", "answer": false, "explanation": "FALSE - The mite burden may reach tens of thousands to millions."}, {"roman": "II", "text": "Brief contact cannot transmit crusted scabies.", "answer": false, "explanation": "FALSE - The enormous mite burden makes crusted scabies highly contagious, even with shorter contact."}, {"roman": "III", "text": "Crusted scabies requires less stringent infection control than classical disease.", "answer": false, "explanation": "FALSE - It requires aggressive therapy and strict infection-control measures."}, {"roman": "IV", "text": "Immunocompromised people are at increased risk of crusted scabies.", "answer": true, "explanation": "TRUE - Impaired host immunity predisposes to massive mite proliferation."}], "explanation": "Each statement is marked independently."}, {"id": 85, "type": "sba", "stem": "A pathogen is carried externally by an insect without developing or multiplying in it. This is:", "options": ["mechanical transmission", "developmental transmission", "transstadial transmission", "transovarial transmission", "biological transmission"], "answer": "A", "explanation": "mechanical transmission is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 86, "type": "sba", "stem": "Haemolymph enters the insect heart principally through the:", "options": ["spiracles", "tracheoles", "ostia", "ovarioles", "rectal papillae"], "answer": "C", "explanation": "ostia is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 87, "type": "sba", "stem": "In the adult female Sarcoptes, which legs characteristically bear suckers?", "options": ["All four pairs", "First and fourth pairs", "Second and third pairs", "Third and fourth pairs", "First and second pairs"], "answer": "E", "explanation": "First and second pairs is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 88, "type": "sba", "stem": "Which finding establishes the diagnosis of myiasis most directly?", "options": ["Demonstration of a tick scutum", "Finding a louse nit on clothing", "Detection of mosquito eggs in water", "Demonstration of a fly larva in human tissue", "Identification of a cockroach ootheca"], "answer": "D", "explanation": "Myiasis is diagnosed by finding fly larvae in tissue; larval morphology and travel history can then help with genus or species identification."}, {"id": 89, "type": "sba", "stem": "Which reproductive mode is characteristic of Glossina?", "options": ["Viviparity", "Aquatic ovoviviparity", "Oviparity only", "External fertilization", "Parthenogenesis only"], "answer": "A", "explanation": "Viviparity is correct because it matches the characteristic biology or medical importance of Glossina and African trypanosomiasis."}, {"id": 90, "type": "tf", "stem": "Concerning yellow fever transmission, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "A mosquito becomes infectious immediately after ingesting viremic blood.", "answer": false, "explanation": "FALSE - The virus requires an extrinsic incubation period before the mosquito can transmit it."}, {"roman": "II", "text": "The sylvatic yellow-fever cycle involves non-human primates.", "answer": true, "explanation": "TRUE - Forest primates maintain the sylvatic reservoir."}, {"roman": "III", "text": "Aedes simpsoni participates in the rural/intermediate cycle described in the lecture.", "answer": true, "explanation": "TRUE - Aedes simpsoni can bridge infection from monkeys to humans near forest edges."}, {"roman": "IV", "text": "Aedes aegypti is important in the urban cycle.", "answer": true, "explanation": "TRUE - Aedes aegypti is the major domestic vector driving urban amplification."}], "explanation": "Each statement is marked independently."}, {"id": 91, "type": "sba", "stem": "Which statement correctly compares the oviposition pattern of Aedes and Culex mosquitoes?", "options": ["Aedes forms compact rosettes beneath aquatic leaves.", "Culex lays single desiccation-resistant eggs above the water line.", "Both genera retain eggs internally until larvae emerge.", "Aedes commonly lays single eggs, whereas Culex commonly forms floating egg rafts.", "Both genera characteristically lay boat-shaped eggs with lateral floats."], "answer": "D", "explanation": "Aedes typically lays eggs singly near the water line, while Culex characteristically lays eggs together in floating rafts."}, {"id": 92, "type": "sba", "stem": "Which fly is an example of a cause of specific myiasis, in which the larva requires a host for development?", "options": ["Lucilia species", "Calliphora species", "Musca domestica", "Cochliomyia species", "Oestrus ovis"], "answer": "E", "explanation": "Specific myiasis includes flies such as Dermatobia hominis, Oestrus ovis and Gasterophilus species, whose larvae require a host."}, {"id": 93, "type": "sba", "stem": "Which louse commonly deposits eggs in clothing seams?", "options": ["Pubic louse", "Bedbug", "Flea", "Body louse", "Head louse"], "answer": "D", "explanation": "Body louse is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 94, "type": "sba", "stem": "Which feature is characteristic of an Anopheles egg?", "options": ["A nit cemented to hair", "A hard ootheca", "A floating egg raft", "A sticky rosette on plant roots", "Lateral floats"], "answer": "E", "explanation": "Lateral floats is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 95, "type": "sba", "stem": "Which feature is characteristic of an adult tsetse fly?", "options": ["Forward-pointing proboscis with characteristic wing venation", "A wingless laterally compressed body adapted for jumping", "Broad sponging mouthparts adapted for non-biting liquid feeding", "A dorsal scutum covering much of the upper body surface", "An abdominal respiratory siphon used to obtain surface oxygen"], "answer": "A", "explanation": "Forward-pointing proboscis with characteristic wing venation is correct because it matches the characteristic biology or medical importance of Glossina and African trypanosomiasis."}, {"id": 96, "type": "tf", "stem": "Concerning adult mosquito morphology, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Mosquitoes possess three pairs of legs.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "II", "text": "Female mosquito antennae are characteristically plumose.", "answer": false, "explanation": "FALSE - Male antennae are plumose; female antennae are comparatively pilose."}, {"roman": "III", "text": "Halteres are modified forewings.", "answer": false, "explanation": "FALSE - Halteres are modified hindwings."}, {"roman": "IV", "text": "The abdomen has ten segments.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}], "explanation": "Each statement is marked independently."}, {"id": 97, "type": "sba", "stem": "A mosquito that strongly prefers human blood is:", "options": ["exophilic", "zoophilic", "ornithophilic", "endophilic", "anthropophilic"], "answer": "E", "explanation": "anthropophilic is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 98, "type": "sba", "stem": "Mosquito pupae obtain atmospheric oxygen mainly through:", "options": ["tarsal claws", "halteres", "Malpighian tubules", "palps", "respiratory trumpets"], "answer": "E", "explanation": "respiratory trumpets is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 99, "type": "tf", "stem": "Concerning collection and preservation, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Gravid traps are designed mainly to attract male mosquitoes.", "answer": false, "explanation": "FALSE - Gravid traps target females seeking oviposition sites."}, {"roman": "II", "text": "Light traps may sample mosquitoes attracted to light.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "III", "text": "Backpack aspirators may collect resting mosquitoes.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "IV", "text": "Direct sunlight is recommended for prolonged storage.", "answer": false, "explanation": "FALSE - Preserved specimens should be protected from damaging heat/direct sunlight."}], "explanation": "Each statement is marked independently."}, {"id": 100, "type": "sba", "stem": "The flattened body of a bedbug is especially useful for:", "options": ["hiding in narrow cracks and crevices", "burrowing through skin", "piercing plant roots", "swimming in water", "attaching to hair shafts"], "answer": "A", "explanation": "hiding in narrow cracks and crevices is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 101, "type": "sba", "stem": "Which feature helps a female scabies mite maintain traction in its burrow?", "options": ["Plumose antennae", "Forward-pointing wings", "Respiratory trumpets", "Backward-pointing dorsal spines", "Lateral floats"], "answer": "D", "explanation": "Backward-pointing dorsal spines is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 102, "type": "sba", "stem": "Which statement best describes reproduction in female Glossina?", "options": ["External hatching of aquatic larvae from eggs laid on the water surface", "Internal development of one larva before deposition", "Formation of floating egg rafts that hatch into aquatic larvae", "Production of a protective ootheca containing several developing eggs", "Deposition of several hundred eggs together in moist soil after feeding"], "answer": "B", "explanation": "Internal development of one larva before deposition is correct because it matches the characteristic biology or medical importance of Glossina and African trypanosomiasis."}, {"id": 103, "type": "tf", "stem": "Concerning insect growth and metamorphosis, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Ecdysis refers to the formation of a pupal case rather than shedding the cuticle.", "answer": false, "explanation": "FALSE - Ecdysis is shedding of the old cuticle."}, {"roman": "II", "text": "Growth is largely restricted to immature stages.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "III", "text": "Hemimetabolous insects possess a pupal stage.", "answer": false, "explanation": "FALSE - Incomplete metamorphosis has no pupal stage."}, {"roman": "IV", "text": "An instar is the interval between successive moults.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}], "explanation": "Each statement is marked independently."}, {"id": 104, "type": "sba", "stem": "Which description best fits an adult Culicoides?", "options": ["A hard tick", "A large mosquito", "A very small blood-feeding midge", "A wingless louse", "A large robust horsefly"], "answer": "C", "explanation": "A very small blood-feeding midge is correct because it matches the vector, morphology, transmission route, clinical association or control method described."}, {"id": 105, "type": "sba", "stem": "Very intense, relatively constant year-round malaria transmission is described as:", "options": ["sporadic", "holoendemic", "epidemic", "hypoendemic", "mesoendemic"], "answer": "B", "explanation": "holoendemic is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 106, "type": "sba", "stem": "Which insect commonly transfers enteric pathogens from refuse to food using its body and sponging mouthparts?", "options": ["Housefly", "Blackfly", "Tsetse fly", "Sandfly", "Horsefly"], "answer": "A", "explanation": "Housefly is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 107, "type": "sba", "stem": "Which mosquito maintains the sylvatic yellow-fever cycle among forest primates in the lecture material?", "options": ["Aedes africanus", "Culex quinquefasciatus", "Mansonia africana", "Anopheles gambiae", "Aedes aegypti"], "answer": "A", "explanation": "Aedes africanus is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 108, "type": "sba", "stem": "The repeated sequence of blood feeding, egg maturation and oviposition is the:", "options": ["sporogonic cycle", "transstadial cycle", "gonotrophic cycle", "ecdysial cycle", "nymphal cycle"], "answer": "C", "explanation": "gonotrophic cycle is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 109, "type": "sba", "stem": "The leathery forewings of cockroaches are called:", "options": ["tegmina", "halteres", "elytra", "festoons", "pulvilli"], "answer": "A", "explanation": "tegmina is correct because it matches the vector, morphology, transmission route, clinical association or control method described."}, {"id": 110, "type": "tf", "stem": "Concerning the scabies life cycle, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "The scabies larva has eight legs at hatching.", "answer": false, "explanation": "FALSE - The larva has six legs; nymphs/adults have eight."}, {"roman": "II", "text": "A pupal stage occurs before adulthood.", "answer": false, "explanation": "FALSE - Scabies mites do not have a pupal stage."}, {"roman": "III", "text": "Eggs may hatch within a few days.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "IV", "text": "The nymph has eight legs.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}], "explanation": "Each statement is marked independently."}, {"id": 111, "type": "sba", "stem": "An item used by a scabies patient cannot be washed. Which measure is appropriate?", "options": ["Expose it for ten minutes only", "Seal it in a plastic bag for several days", "Keep using it", "Soak it briefly in cold water", "Place it in stagnant water"], "answer": "B", "explanation": "Seal it in a plastic bag for several days is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 112, "type": "sba", "stem": "Which adult feature helps distinguish Anopheles from many culicine mosquitoes?", "options": ["Anopheles adults have four pairs of legs.", "Culicines lack antennae.", "The Anopheles abdomen lacks the scales characteristic of culicines.", "Culicines rest at a steep angle while Anopheles rests parallel.", "Anopheles adults possess no wings."], "answer": "C", "explanation": "Adult Anopheles has an unscaled abdomen and typically rests at an angle; culicines have abdominal scales and generally rest parallel to the surface."}, {"id": 113, "type": "sba", "stem": "Which statement about the geographic distribution of tsetse flies is correct?", "options": ["They occur naturally on every continent.", "They are restricted to sub-Saharan Africa.", "They are restricted to the Mediterranean basin.", "They occur only in Southeast Asia.", "They are confined to South America."], "answer": "B", "explanation": "Glossina is restricted to sub-Saharan Africa, so the distribution of African trypanosomiasis closely follows tsetse habitat."}, {"id": 114, "type": "sba", "stem": "Which parasite stage is inoculated into humans by an infective Anopheles mosquito?", "options": ["Sporozoite", "Merozoite", "Ookinete", "Schizont", "Gametocyte"], "answer": "A", "explanation": "Sporozoite is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 115, "type": "sba", "stem": "Which larval feature most strongly distinguishes Aedes from Culex?", "options": ["Short barrel-shaped siphon in Aedes; long narrow siphon in Culex", "Complete absence of a respiratory siphon in both genera", "Plant-piercing respiratory siphon in Aedes but not in Culex", "Horizontal surface resting in Culex but oblique hanging in Aedes", "Lateral egg floats on Aedes larvae but not on Culex larvae"], "answer": "A", "explanation": "Both are culicines with siphons, but the Aedes siphon is characteristically shorter and broader than the long narrow Culex siphon."}, {"id": 116, "type": "tf", "stem": "Concerning bedbugs, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Development is hemimetabolous.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "II", "text": "Harbourages may include cracks in furniture and walls.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "III", "text": "Only adult bedbugs, not nymphs, take blood meals.", "answer": false, "explanation": "FALSE - Both bedbug nymphs and adults feed on blood."}, {"roman": "IV", "text": "A pupal stage is required.", "answer": false, "explanation": "FALSE - Bedbugs are hemimetabolous and lack a pupa."}], "explanation": "Each statement is marked independently."}, {"id": 117, "type": "sba", "stem": "Approximately how long may elapse between the emergence of a female tsetse fly and the emergence of her first offspring?", "options": ["About 6 months", "About 50 days", "About 7 days", "About 14 days", "About 2 days"], "answer": "B", "explanation": "The tsetse reproductive cycle is unusually slow; roughly 50 days may separate emergence of a female and emergence of her first offspring."}, {"id": 118, "type": "sba", "stem": "Which feature is shared by members of Phylum Arthropoda?", "options": ["Chitinous exoskeleton with jointed appendages", "Unsegmented appendages attached directly to a soft body wall", "A vertebral column enclosing the central nervous system", "A closed circulatory system containing true arteries and veins", "An internal bony skeleton supporting locomotion and body shape"], "answer": "A", "explanation": "Chitinous exoskeleton with jointed appendages is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 119, "type": "sba", "stem": "Closure of spiracular valves primarily helps an insect to:", "options": ["pump haemolymph", "reduce water loss", "digest cellulose", "store sperm", "increase egg production"], "answer": "B", "explanation": "reduce water loss is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 120, "type": "sba", "stem": "Which species is commonly called the Asian tiger mosquito?", "options": ["Aedes albopictus", "Mansonia uniformis", "Aedes aegypti", "Anopheles gambiae", "Culex quinquefasciatus"], "answer": "A", "explanation": "Aedes albopictus is the Asian tiger mosquito and is an invasive vector capable of transmitting arboviruses."}, {"id": 121, "type": "sba", "stem": "Which person is at greatest risk of developing wound myiasis?", "options": ["A person with a healed scar and no open lesion", "A person with intact skin using an insecticide-treated net", "A person with a closed fracture", "A person with an untreated open wound in a tropical area", "A person exposed only to chlorinated water"], "answer": "D", "explanation": "Open untreated wounds provide access and suitable tissue for myiasis-producing flies, especially in tropical and subtropical settings."}, {"id": 122, "type": "sba", "stem": "Which hosts are important amplifying hosts for Japanese encephalitis virus?", "options": ["Monkeys and humans", "Humans and dogs", "Cattle and humans", "Rodents and humans", "Birds and pigs"], "answer": "E", "explanation": "Birds and pigs is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 123, "type": "tf", "stem": "Concerning culicine eggs and larvae, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Culex eggs may form floating rafts.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "II", "text": "Aedes eggs are characteristically laid as floating rafts.", "answer": false, "explanation": "FALSE - Culex forms floating rafts; Aedes usually lays eggs singly."}, {"roman": "III", "text": "Mansonia eggs may be associated with aquatic vegetation.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "IV", "text": "All culicine larvae must reach the water surface for oxygen.", "answer": false, "explanation": "FALSE - Mansonia larvae obtain oxygen from aquatic plants and need not surface."}], "explanation": "Each statement is marked independently."}, {"id": 124, "type": "sba", "stem": "Which description is most consistent with an adult bedbug?", "options": ["Permanently burrowing", "Laterally compressed and winged", "Dorsoventrally flattened and wingless", "Aquatic and winged", "Four-legged and wingless"], "answer": "C", "explanation": "Dorsoventrally flattened and wingless is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 125, "type": "sba", "stem": "Which mosquito is strongly associated with polluted drains and may transmit lymphatic filariasis?", "options": ["Aedes africanus", "Anopheles melas", "Anopheles funestus", "Aedes aegypti", "Culex quinquefasciatus"], "answer": "E", "explanation": "Culex quinquefasciatus is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 126, "type": "sba", "stem": "Which measure most directly protects a sleeping person from nocturnal mosquitoes?", "options": ["Insecticide-treated bed net", "Skin scraping", "Berlese funnel", "Gravid trap", "Aquatic dipper"], "answer": "A", "explanation": "Insecticide-treated bed net is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 127, "type": "sba", "stem": "Beyond carrying enteric pathogens, which health effect is specifically associated with cockroach material in the lecture?", "options": ["Malaria caused by cockroach bites", "Sleeping sickness after salivary inoculation", "Allergic reactions to cockroaches or dried fecal pellets", "Lymphatic filariasis after larval penetration", "Onchocerciasis after blood feeding"], "answer": "C", "explanation": "Cockroaches can contribute to allergy, including reactions to cockroach material and dried fecal pellets."}, {"id": 128, "type": "sba", "stem": "Which mosquito commonly lays eggs as floating rafts?", "options": ["Glossina", "Culex", "Culicoides", "Anopheles", "Aedes"], "answer": "B", "explanation": "Culex is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 129, "type": "sba", "stem": "Which mosquito acts as an important bridge vector in the rural yellow-fever cycle described?", "options": ["Culex tritaeniorhynchus", "Mansonia uniformis", "Aedes simpsoni", "Aedes aegypti", "Anopheles melas"], "answer": "C", "explanation": "Aedes simpsoni is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 130, "type": "tf", "stem": "Concerning Sarcoptes scabiei, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Adults possess four pairs of legs.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "II", "text": "Scabies larvae possess four pairs of legs.", "answer": false, "explanation": "FALSE - Larvae have three pairs of legs."}, {"roman": "III", "text": "Adults possess compound eyes.", "answer": false, "explanation": "FALSE - Sarcoptes lacks compound eyes."}, {"roman": "IV", "text": "Gas exchange may occur through the cuticle.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}], "explanation": "Each statement is marked independently."}, {"id": 131, "type": "sba", "stem": "After a mature tsetse larva is deposited, it normally:", "options": ["enters an aquatic stage", "forms a nymph", "returns to the female", "burrows into soil and pupates", "immediately flies"], "answer": "D", "explanation": "burrows into soil and pupates is correct because it matches the characteristic biology or medical importance of Glossina and African trypanosomiasis."}, {"id": 132, "type": "sba", "stem": "Which regimen is appropriate for severe crusted scabies?", "options": ["Chloroquine plus primaquine", "Praziquantel alone", "Antibiotics alone", "Topical permethrin plus oral ivermectin", "Metronidazole alone"], "answer": "D", "explanation": "Topical permethrin plus oral ivermectin is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 133, "type": "sba", "stem": "Which site is typical for scabies lesions in a healthy adult?", "options": ["Oral mucosa", "Central scalp only", "Middle of the back only", "Cornea", "Interdigital web spaces"], "answer": "E", "explanation": "Interdigital web spaces is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 134, "type": "sba", "stem": "The interval between two successive moults is called an:", "options": ["ootheca", "instar", "gonotrophic cycle", "puparium", "imago"], "answer": "B", "explanation": "instar is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 135, "type": "sba", "stem": "Neurological manifestations of sleeping sickness indicate involvement of the:", "options": ["respiratory system", "renal system", "central nervous system", "skeletal system", "integumentary system"], "answer": "C", "explanation": "central nervous system is correct because it matches the characteristic biology or medical importance of Glossina and African trypanosomiasis."}, {"id": 136, "type": "tf", "stem": "Concerning malaria, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "The asexual stages of malaria occur only in the mosquito vector.", "answer": false, "explanation": "FALSE - Asexual stages occur in humans; sexual development continues in the mosquito."}, {"roman": "II", "text": "Sexual stages occur in the Anopheles vector.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "III", "text": "Fever paroxysms relate to rupture of infected erythrocytes.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "IV", "text": "Human infection begins with inoculation of merozoites.", "answer": false, "explanation": "FALSE - An infective Anopheles inoculates sporozoites."}], "explanation": "Each statement is marked independently."}, {"id": 137, "type": "sba", "stem": "Which mosquito is highlighted as an invasive urban malaria vector under surveillance?", "options": ["Mansonia africana", "Anopheles stephensi", "Aedes africanus", "Culex decens", "Anopheles melas"], "answer": "B", "explanation": "Anopheles stephensi is an urban-adapted invasive malaria vector and is an emerging surveillance concern."}, {"id": 138, "type": "sba", "stem": "Human lice are best described as:", "options": ["Wingless insects with a laterally compressed body adapted for jumping", "Burrowing mites with four pairs of short stumpy adult legs", "Eight-legged arachnids with a fused cephalothorax and abdomen", "Aquatic winged insects with larvae developing in stagnant water", "Wingless, dorsoventrally flattened ectoparasites"], "answer": "E", "explanation": "Wingless, dorsoventrally flattened ectoparasites is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 139, "type": "sba", "stem": "Which intervention is listed as a non-chemical method for cockroach control?", "options": ["Use of gel baits or sticky traps", "Organophosphate space spraying only", "Residual cypermethrin lacquer only", "Larviciding stagnant water", "Sterile-male release"], "answer": "A", "explanation": "The cockroach-control lecture lists gel baits, adhesive plates/sticky traps and biological approaches among non-chemical methods."}, {"id": 140, "type": "sba", "stem": "Which Plasmodium species is classically associated with quartan malaria?", "options": ["Plasmodium falciparum", "Plasmodium knowlesi", "Plasmodium malariae", "Plasmodium ovale", "Plasmodium vivax"], "answer": "C", "explanation": "Plasmodium malariae is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 141, "type": "sba", "stem": "Before relying heavily on indoor residual spraying, which behaviour is particularly important to assess?", "options": ["Whether Malpighian tubules are present", "Whether the vector is exophagic and exophilic", "Whether larvae have four instars", "Whether eggs contain yolk", "Whether adults have compound eyes"], "answer": "B", "explanation": "Whether the vector is exophagic and exophilic is correct because integrated vector management uses evidence-based, complementary interventions selected according to local vector ecology."}, {"id": 142, "type": "tf", "stem": "Concerning integrated vector management, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "IVM decisions should be informed by local evidence and surveillance.", "answer": true, "explanation": "TRUE - Local surveillance identifies vectors, behaviours and resistance patterns."}, {"roman": "II", "text": "Different interventions may be combined when appropriate.", "answer": true, "explanation": "TRUE - Integrated vector management deliberately combines complementary methods."}, {"roman": "III", "text": "Insecticide resistance should influence intervention selection.", "answer": true, "explanation": "TRUE - Resistance data are important when choosing and rotating insecticides."}, {"roman": "IV", "text": "Intersectoral collaboration has no role in IVM.", "answer": false, "explanation": "FALSE - IVM commonly benefits from collaboration across health, environment and community sectors."}], "explanation": "Each statement is marked independently."}, {"id": 143, "type": "sba", "stem": "Compared with soft ticks, hard ticks generally:", "options": ["Longer attachment and feeding", "have several adult moults", "have no larval stage", "lack a capitulum", "feed only once in life"], "answer": "A", "explanation": "Longer attachment and feeding is correct because it matches the hard/soft tick morphology, feeding pattern, disease association or control principle being tested."}, {"id": 144, "type": "sba", "stem": "How many pairs of legs does an adult scabies mite possess?", "options": ["Four pairs", "One pair", "Five pairs", "Three pairs", "Two pairs"], "answer": "A", "explanation": "Four pairs is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 145, "type": "sba", "stem": "Which behaviour is characteristic of bedbugs?", "options": ["Permanent attachment to the host", "Continuous epidermal burrowing", "Nocturnal feeding with hiding between meals", "Internal larval development", "Aquatic larval feeding"], "answer": "C", "explanation": "Nocturnal feeding with hiding between meals is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 146, "type": "sba", "stem": "A single negative skin scraping in a patient with typical scabies means:", "options": ["the patient must have malaria", "scabies is still possible", "the patient is cured", "crusted scabies is proven", "scabies is completely excluded"], "answer": "B", "explanation": "scabies is still possible is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 147, "type": "sba", "stem": "Widespread hyperkeratotic crusts with an enormous mite burden suggest:", "options": ["cutaneous myiasis", "pediculosis capitis", "classical dengue", "bedbug infestation", "crusted scabies"], "answer": "E", "explanation": "crusted scabies is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 148, "type": "sba", "stem": "Which lesion is particularly characteristic of scabies?", "options": ["Burrow", "Eschar", "Bubo", "Chancre", "Wheal only"], "answer": "A", "explanation": "Burrow is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 149, "type": "tf", "stem": "Concerning arbovirus transmission by mosquitoes, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Biological arbovirus transmission requires infection of the mosquito vector.", "answer": true, "explanation": "TRUE - The virus must infect and replicate in vector tissues before transmission."}, {"roman": "II", "text": "An eclipse phase cannot occur after a viremic blood meal.", "answer": false, "explanation": "FALSE - An eclipse phase may occur while the virus is developing within the mosquito."}, {"roman": "III", "text": "Arboviruses never reach mosquito salivary glands.", "answer": false, "explanation": "FALSE - Salivary-gland invasion is necessary for efficient biological transmission by bite."}, {"roman": "IV", "text": "Mechanical transmission necessarily requires viral multiplication inside the vector.", "answer": false, "explanation": "FALSE - Mechanical transfer does not require replication within the vector."}], "explanation": "Each statement is marked independently."}, {"id": 150, "type": "sba", "stem": "What is an important disadvantage of mosquito light traps?", "options": ["They require mosquitoes to be manually aspirated from walls.", "They cannot collect nocturnally active insects.", "They selectively collect only gravid females.", "They work only in fast-flowing water.", "They attract many non-mosquito insects that must be sorted from the catch."], "answer": "E", "explanation": "Light traps exploit attraction to light but may collect moths, beetles and other insects, creating a mixed catch that requires sorting."}, {"id": 151, "type": "sba", "stem": "Which is an example of environmental management for mosquito control?", "options": ["Vaccinating mosquitoes", "Applying scabicide", "Administering antibiotics", "Treating lice in clothing", "Removing stagnant-water containers"], "answer": "E", "explanation": "Removing stagnant-water containers is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 152, "type": "sba", "stem": "Which symptom is particularly characteristic of dengue fever?", "options": ["Retro-orbital pain", "Burrows in finger webs", "Winterbottom sign", "Black vomit", "Elephantiasis"], "answer": "A", "explanation": "Retro-orbital pain is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 153, "type": "sba", "stem": "Which mosquito genus transmits the greatest number of arboviruses according to the lecture hierarchy?", "options": ["Anopheles", "Glossina", "Culex", "Culicoides", "Mansonia"], "answer": "C", "explanation": "The lecture ranks Culex as transmitting the greatest number of arboviruses among mosquito genera, followed by Aedes."}, {"id": 154, "type": "sba", "stem": "Which genus contains medically important biting midges?", "options": ["Pediculus", "Simulium", "Culicoides", "Glossina", "Culex"], "answer": "C", "explanation": "Culicoides is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 155, "type": "tf", "stem": "Concerning vector-control methods, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Environmental modification has no role in reducing mosquito breeding.", "answer": false, "explanation": "FALSE - Source reduction and habitat modification can reduce breeding."}, {"roman": "II", "text": "Personal protection may reduce human-vector contact.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "III", "text": "Chemical control is the only component compatible with IVM.", "answer": false, "explanation": "FALSE - IVM combines multiple suitable methods, not chemicals alone."}, {"roman": "IV", "text": "Vector ecology should influence intervention choice.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}], "explanation": "Each statement is marked independently."}, {"id": 156, "type": "sba", "stem": "Why can bedbug eradication be difficult?", "options": ["They live in the bloodstream", "Their eggs are deposited under skin", "They pupate inside humans", "They hide in environmental harbourages", "Adults are permanently attached"], "answer": "D", "explanation": "They hide in environmental harbourages is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 157, "type": "sba", "stem": "What is ecdysis?", "options": ["Shedding of the old cuticle during growth", "Storage of sperm in the female", "Fusion of male and female gametes", "Formation of an egg raft", "Digestion of a blood meal"], "answer": "A", "explanation": "Shedding of the old cuticle during growth is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 158, "type": "sba", "stem": "Which mosquito larvae obtain oxygen by piercing aquatic plant tissues?", "options": ["Aedes", "Culex", "Anopheles", "Mansonia", "Culicoides"], "answer": "D", "explanation": "Mansonia is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 159, "type": "sba", "stem": "Which statement about Wuchereria bancrofti is correct?", "options": ["It causes African sleeping sickness and is transmitted by Glossina.", "It causes most lymphatic filariasis; an urban vector is Culex quinquefasciatus.", "It is restricted to the Lesser Sunda Islands.", "It is transmitted only by Aedes aegypti.", "It is a protozoan transmitted by blackflies."], "answer": "B", "explanation": "Wuchereria bancrofti causes the great majority of lymphatic filariasis and Culex quinquefasciatus is an important urban vector."}, {"id": 160, "type": "sba", "stem": "Which malaria vector is particularly associated with brackish coastal water?", "options": ["Anopheles stephensi", "Anopheles rufipes", "Anopheles pharoensis", "Anopheles melas", "Anopheles funestus"], "answer": "D", "explanation": "Anopheles melas is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 161, "type": "tf", "stem": "Concerning Aedes mosquitoes, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Aedes larvae develop only in fast-flowing rivers.", "answer": false, "explanation": "FALSE - Aedes commonly develops in small natural or artificial containers."}, {"roman": "II", "text": "Aedes aegypti is primarily a nocturnal biter.", "answer": false, "explanation": "FALSE - Aedes aegypti is primarily a daytime biter."}, {"roman": "III", "text": "Their eggs may resist desiccation.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "IV", "text": "Aedes aegypti has black-and-white scale patterns.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}], "explanation": "Each statement is marked independently."}, {"id": 162, "type": "sba", "stem": "Which fluid is suitable for preserving many arthropod specimens?", "options": ["0.9% saline", "Distilled water", "70-80% ethyl alcohol", "5% glucose", "1% sodium hypochlorite"], "answer": "C", "explanation": "70-80% ethyl alcohol is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 163, "type": "sba", "stem": "Which measure most directly targets body-louse infestation?", "options": ["Removal of aquatic plants", "Indoor residual spraying alone", "Larviciding rivers", "Treating and laundering infested clothing", "Drainage of breeding water"], "answer": "D", "explanation": "Treating and laundering infested clothing is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 164, "type": "sba", "stem": "Which mosquito may lay desiccation-resistant eggs singly on damp surfaces near water?", "options": ["Aedes", "Culex", "Mansonia", "Glossina", "Anopheles"], "answer": "A", "explanation": "Aedes is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 165, "type": "sba", "stem": "Repeated scratching in scabies predisposes to:", "options": ["secondary bacterial infection", "onchocerciasis", "trypanosomiasis", "malaria", "yellow fever"], "answer": "A", "explanation": "secondary bacterial infection is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 166, "type": "sba", "stem": "Malpighian tubules are principally involved in:", "options": ["Mechanical stabilization of the wings during flight", "Long-term storage of sperm following copulation", "Excretion and osmoregulation", "Production of digestive enzymes within the midgut", "Direct transport of oxygen from spiracles to cells"], "answer": "C", "explanation": "Excretion and osmoregulation is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 167, "type": "sba", "stem": "Which developmental sequence represents complete metamorphosis?", "options": ["Egg - pupa - nymph - adult", "Egg - larva - adult", "Egg - nymph - adult", "Egg - nymph - pupa - adult", "Egg - larva - pupa - adult"], "answer": "E", "explanation": "Egg - larva - pupa - adult is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 168, "type": "tf", "stem": "Comparing lice and bedbugs, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Both undergo incomplete metamorphosis.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "II", "text": "Both may produce pruritic reactions after feeding.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "III", "text": "Lice are arachnids whereas bedbugs are insects.", "answer": false, "explanation": "FALSE - Both lice and bedbugs are insects."}, {"roman": "IV", "text": "Both remain permanently attached to the host.", "answer": false, "explanation": "FALSE - Bedbugs hide in environmental harbourages between meals."}], "explanation": "Each statement is marked independently."}, {"id": 169, "type": "sba", "stem": "Which symptom is especially characteristic of scabies?", "options": ["Haemoptysis", "Pruritus that is worse at night", "Periodic fever every 72 hours", "Painless jaundice", "Black vomit"], "answer": "B", "explanation": "Pruritus that is worse at night is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 170, "type": "sba", "stem": "How many nymphal instars are described for the body louse before adulthood?", "options": ["Six", "Two", "Four", "One", "Three"], "answer": "E", "explanation": "Body lice undergo incomplete metamorphosis with three nymphal instars before reaching adulthood."}, {"id": 171, "type": "sba", "stem": "How many pairs of legs does a scabies larva possess?", "options": ["Two pairs", "Three pairs", "Four pairs", "One pair", "Five pairs"], "answer": "B", "explanation": "Three pairs is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 172, "type": "sba", "stem": "Which feature is characteristic of the pubic louse, Pthirus pubis?", "options": ["The first pair of legs bears the largest claws.", "Its body is long and slender rather than broad and squat.", "It has four pairs of walking legs.", "It possesses functional wings.", "The second and third pairs of legs bear massive claws."], "answer": "E", "explanation": "Pthirus pubis has a broad squat body; its second and third leg pairs bear large claws adapted to grasp coarse hair."}, {"id": 173, "type": "sba", "stem": "Louse eggs attached to hair or clothing fibres are called:", "options": ["scybala", "oocysts", "oothecae", "nits", "puparia"], "answer": "D", "explanation": "nits is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 174, "type": "sba", "stem": "An arthropod has four pairs of legs and lacks antennae. Which class is most likely?", "options": ["Arachnida", "Diplopoda", "Crustacea", "Chilopoda", "Insecta"], "answer": "A", "explanation": "Arachnida is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 175, "type": "tf", "stem": "Concerning complications of scabies, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Excoriation can disrupt the skin barrier.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "II", "text": "Secondary impetigo is never associated with Staphylococcus aureus.", "answer": false, "explanation": "FALSE - Secondary impetigo may involve S. aureus or S. pyogenes."}, {"roman": "III", "text": "Streptococcal superinfection may have renal consequences.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "IV", "text": "Eczematization always proves living mites remain.", "answer": false, "explanation": "FALSE - Inflammatory changes can persist after eradication."}], "explanation": "Each statement is marked independently."}, {"id": 176, "type": "sba", "stem": "Which feature helps distinguish the male Sarcoptes from the female?", "options": ["Functional wings", "A dorsal scutum", "A pair of antennae", "Only three pairs of legs", "A sucker on the fourth pair of legs"], "answer": "E", "explanation": "A sucker on the fourth pair of legs is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 177, "type": "sba", "stem": "Which statement about louse eggs is correct?", "options": ["They are enclosed in a cockroach-like ootheca.", "They are deposited only in soil.", "Cemented nits; egg stage about 6-10 days", "They float freely on water as rafts.", "They hatch immediately after being laid."], "answer": "C", "explanation": "Louse eggs or nits are firmly glued to hair or clothing fibres and typically remain in the egg stage for several days before hatching."}, {"id": 178, "type": "sba", "stem": "Which louse is an important vector of epidemic typhus?", "options": ["Body louse", "Pubic louse", "Human flea", "Head louse", "Bedbug"], "answer": "A", "explanation": "Body louse is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 179, "type": "sba", "stem": "Which behaviour increases indoor human-vector contact in Anopheles funestus?", "options": ["Aquatic feeding", "Exophagy and exophily", "Strict zoophily", "Endophagy and endophily", "Diurnal outdoor feeding"], "answer": "D", "explanation": "Endophagy and endophily is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 180, "type": "sba", "stem": "Which human louse has a broad crab-like appearance?", "options": ["Xenopsylla cheopis", "Pediculus humanus capitis", "Cimex lectularius", "Pediculus humanus corporis", "Pthirus pubis"], "answer": "E", "explanation": "Pthirus pubis is correct because it is the distinguishing feature, life-cycle point, medical importance or control measure for the ectoparasite described."}, {"id": 181, "type": "tf", "stem": "Concerning mosquito mating and reproduction, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Female mosquitoes must remate before every egg batch.", "answer": false, "explanation": "FALSE - Stored sperm from one mating can fertilize multiple egg batches."}, {"roman": "II", "text": "Males may form mating swarms.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "III", "text": "One mating may provide sperm for several egg batches.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "IV", "text": "A single successful mating may provide sperm for multiple egg batches.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}], "explanation": "Each statement is marked independently."}, {"id": 182, "type": "sba", "stem": "Integrated vector management is best described as:", "options": ["Complete elimination of all arthropod species from the environment", "Exclusive reliance on insecticides regardless of local vector ecology", "Use of biological control as the only acceptable intervention", "Evidence-based combination of complementary control methods", "Treatment of infected humans without measures directed at vectors"], "answer": "D", "explanation": "Evidence-based combination of complementary control methods is correct because it directly matches the defining entomological structure or process tested in the question."}, {"id": 183, "type": "sba", "stem": "Humans are dead-end hosts in some arbovirus cycles mainly because they:", "options": ["Humans are completely resistant to infection by these viruses", "Mosquitoes cannot acquire arboviruses during vertebrate blood meals", "Infected humans eliminate the virus before any symptoms develop", "Human infection never produces virus in the peripheral blood", "Their viraemia is too low to infect feeding vectors efficiently"], "answer": "E", "explanation": "Their viraemia is too low to infect feeding vectors efficiently is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 184, "type": "sba", "stem": "Which domestic-vector pattern best describes mosquitoes that enter houses to feed but breed mainly outdoors?", "options": ["Permanent endoparasites", "Breeding exclusively on the body", "Aquatic ectoparasites", "Adventitious insects", "Breeding entirely in-house"], "answer": "D", "explanation": "The IVM lecture describes mosquitoes and many biting flies as adventitious insects: they may enter homes to feed but breed at outdoor sites."}, {"id": 185, "type": "sba", "stem": "A programme uses bed nets, environmental management, surveillance and targeted residual spraying. This is an example of:", "options": ["transstadial control", "vertical transmission", "chemoprophylaxis", "integrated vector management", "mechanical transmission"], "answer": "D", "explanation": "integrated vector management is correct because integrated vector management uses evidence-based, complementary interventions selected according to local vector ecology."}, {"id": 186, "type": "tf", "stem": "Concerning medically important arthropods, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Mechanical transmission requires pathogen development inside the vector.", "answer": false, "explanation": "FALSE - Development or multiplication is characteristic of biological, not mechanical, transmission."}, {"roman": "II", "text": "Female tsetse flies deposit floating egg rafts on water.", "answer": false, "explanation": "FALSE - Tsetse females nourish a single larva internally and deposit the mature larva to pupate in soil."}, {"roman": "III", "text": "Soft ticks lack a dorsal scutum.", "answer": true, "explanation": "TRUE - Absence of a scutum is a key argasid feature."}, {"roman": "IV", "text": "Cockroaches pass through a distinct pupal stage.", "answer": false, "explanation": "FALSE - Cockroaches are hemimetabolous: egg/ootheca -> nymph -> adult."}], "explanation": "Each statement is marked independently."}, {"id": 187, "type": "sba", "stem": "Which property is essential for a community vector-control method to achieve sustained uptake?", "options": ["It should maximize insecticide use regardless of environmental risk.", "It should require specialist equipment unavailable locally.", "It should rely on the most expensive technology available.", "It should ignore local beliefs to preserve standardization.", "It should be effective, affordable, simple, culturally acceptable and safe."], "answer": "E", "explanation": "Community-level vector control is more likely to succeed when methods are effective, affordable, simple, culturally acceptable and safe."}, {"id": 188, "type": "tf", "stem": "Concerning scabies transmission, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Shared bedding cannot contribute to scabies transmission.", "answer": false, "explanation": "FALSE - Recently used bedding may contribute to fomite transmission."}, {"roman": "II", "text": "Overcrowding facilitates spread.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "III", "text": "People of any socioeconomic group may be affected.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "IV", "text": "Brief casual contact is the principal mode in classical scabies.", "answer": false, "explanation": "FALSE - Classical scabies mainly requires relatively prolonged skin contact."}], "explanation": "Each statement is marked independently."}, {"id": 189, "type": "sba", "stem": "Mosquito development normally follows which sequence?", "options": ["Egg - nymph - pupa - adult", "Egg - larva - nymph - adult", "Egg - nymph - adult", "Egg - pupa - adult", "Egg - larva - pupa - adult"], "answer": "E", "explanation": "Egg - larva - pupa - adult is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 190, "type": "sba", "stem": "Which factor strongly facilitates classical scabies transmission?", "options": ["Contaminated drinking water", "Inhalation of eggs", "Prolonged skin-to-skin contact", "Mosquito bites", "Tick attachment"], "answer": "C", "explanation": "Prolonged skin-to-skin contact is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 191, "type": "sba", "stem": "Which topical agent is commonly first-line for scabies?", "options": ["Quinine ointment", "Metronidazole gel", "Permethrin 5% cream", "Chloroquine lotion", "Praziquantel cream"], "answer": "C", "explanation": "Permethrin 5% cream is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 192, "type": "sba", "stem": "Which feature is characteristic of Culicoides larval development?", "options": ["There is no pupal stage in the life cycle.", "Larvae possess three pairs of jointed walking legs.", "Larvae are permanently attached to aquatic plant roots for oxygen.", "Four larval instars in moist habitats before pupation", "The immature stages develop entirely inside the female."], "answer": "D", "explanation": "Culicoides is holometabolous; larvae develop through several instars in moist habitats and then pupate before adult emergence."}, {"id": 193, "type": "sba", "stem": "The intense itching of scabies is mainly related to:", "options": ["Haemolysis caused by multiplication of malaria parasites in erythrocytes", "Direct invasion of the bloodstream by large numbers of adult mites", "Mechanical obstruction of superficial arteries by burrowing mites", "Hypersensitivity to mite antigens and products", "Destruction of peripheral motor nerves by migrating scabies larvae"], "answer": "D", "explanation": "Hypersensitivity to mite antigens and products is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 194, "type": "tf", "stem": "Concerning diagnosis of scabies, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Symptoms in household contacts do not support a diagnosis of scabies.", "answer": false, "explanation": "FALSE - Similar symptoms in close contacts strengthen the diagnosis."}, {"roman": "II", "text": "Diagnosis may be clinical.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "III", "text": "One negative scraping always excludes scabies.", "answer": false, "explanation": "FALSE - A negative scraping does not exclude a clinically convincing case."}, {"roman": "IV", "text": "Skin scraping may demonstrate scybala.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}], "explanation": "Each statement is marked independently."}, {"id": 195, "type": "sba", "stem": "Which feature most strongly suggests that an adult mosquito is male?", "options": ["A pointed abdomen", "A blood-filled midgut", "A short proboscis", "Pilose antennae", "Plumose antennae"], "answer": "E", "explanation": "Plumose antennae is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 196, "type": "sba", "stem": "Which mouthparts of Sarcoptes are used principally for piercing and cutting?", "options": ["Halteres", "Labium", "Chelicerae", "Antennae", "Mandibles"], "answer": "C", "explanation": "Chelicerae is correct because it matches the characteristic morphology, life cycle, clinical feature, diagnosis or control point for scabies tested here."}, {"id": 197, "type": "sba", "stem": "A mosquito that preferentially feeds indoors is described as:", "options": ["endophilic", "exophilic", "endophagic", "exophagic", "zoophilic"], "answer": "C", "explanation": "endophagic is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 198, "type": "sba", "stem": "Which feature makes surface oil relatively less useful against Mansonia larvae?", "options": ["They are winged larvae", "They breathe through haemolymph", "They have no respiratory structures", "They live only in dry soil", "They obtain oxygen from aquatic plants"], "answer": "E", "explanation": "They obtain oxygen from aquatic plants is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}, {"id": 199, "type": "tf", "stem": "Concerning mosquito life-cycle stages, indicate whether each statement is TRUE or FALSE.", "statements": [{"roman": "I", "text": "Mosquito pupae are active feeding stages.", "answer": false, "explanation": "FALSE - Mosquito pupae are mobile but non-feeding."}, {"roman": "II", "text": "Mosquito development includes a nymphal stage.", "answer": false, "explanation": "FALSE - Mosquitoes undergo egg -> larva -> pupa -> adult development."}, {"roman": "III", "text": "Mosquito larvae are aquatic.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}, {"roman": "IV", "text": "Adult mosquitoes emerge from pupae.", "answer": true, "explanation": "TRUE - This statement is consistent with the lecture material."}], "explanation": "Each statement is marked independently."}, {"id": 200, "type": "sba", "stem": "Adult mosquitoes belong to which family?", "options": ["Ceratopogonidae", "Simuliidae", "Culicidae", "Pulicidae", "Glossinidae"], "answer": "C", "explanation": "Culicidae is the best answer because it matches the vector biology, morphology, transmission pattern or disease association tested in the stem."}];
+const STORAGE_KEY = "gli_entomology_200q_mock_v4";
+const STATE_VERSION = 4;
+
+let mode = "instant";
+let idx = 0;
+let answers = {};
+let flags = {};
+let locked = {};
+let elapsedMs = 0;
+let sessionStartedAt = null;
+let timerHandle = null;
+let started = false;
+let storageAvailable = true;
+let activeTFIndex = 0;
+
+function safeGet() {
+  try { return localStorage.getItem(STORAGE_KEY); }
+  catch (e) { storageAvailable = false; return null; }
+}
+function safeSet(value) {
+  try { localStorage.setItem(STORAGE_KEY, value); storageAvailable = true; return true; }
+  catch (e) { storageAvailable = false; return false; }
+}
+function safeRemove() {
+  try { localStorage.removeItem(STORAGE_KEY); storageAvailable = true; }
+  catch (e) { storageAvailable = false; }
+}
+
+function selectMode(m) {
+  mode = m;
+  document.querySelectorAll(".mode-card").forEach(x => x.classList.toggle("active", x.dataset.mode === m));
+}
+
+function currentElapsed() {
+  return elapsedMs + (sessionStartedAt ? Date.now() - sessionStartedAt : 0);
+}
+
+function validSavedState() {
+  try {
+    const raw = safeGet();
+    if (!raw) return false;
+    const s = JSON.parse(raw);
+    return !!(s && s.version === STATE_VERSION && s.started === true && s.answers && typeof s.idx === "number" && s.idx >= 0 && s.idx < QUESTIONS.length);
+  } catch (e) { return false; }
+}
+
+function refreshLanding() {
+  selectMode(mode);
+  const has = validSavedState();
+  document.getElementById("resumeBtn").style.display = has ? "inline-block" : "none";
+  document.getElementById("clearBtn").classList.toggle("hidden", !has);
+  const notice = document.getElementById("storageNotice");
+  notice.textContent = storageAvailable
+    ? "Progress is saved automatically in this browser after you begin. Resume appears only when a genuine saved attempt exists."
+    : "Browser storage is unavailable here. The mock will still work, but automatic resume cannot be guaranteed.";
+}
+
+function saveState() {
+  if (!started) return;
+  const state = {
+    version: STATE_VERSION,
+    started: true,
+    mode,
+    idx,
+    answers,
+    flags,
+    locked,
+    elapsedMs: currentElapsed()
+  };
+  safeSet(JSON.stringify(state));
+}
+
+function loadSavedState() {
+  const s = JSON.parse(safeGet());
+  mode = s.mode || "instant";
+  idx = s.idx || 0;
+  answers = s.answers || {};
+  flags = s.flags || {};
+  locked = s.locked || {};
+  elapsedMs = Number(s.elapsedMs || 0);
+  sessionStartedAt = Date.now();
+  started = true;
+}
+
+function startMock(resume) {
+  if (resume && validSavedState()) {
+    loadSavedState();
+  } else {
+    if (validSavedState()) {
+      const replace = confirm("A saved attempt already exists. Start a new mock and replace the saved progress?");
+      if (!replace) return;
+    }
+    idx = 0; answers = {}; flags = {}; locked = {};
+    elapsedMs = 0; sessionStartedAt = Date.now(); started = true;
+    saveState();
+  }
+  document.getElementById("landing").classList.add("hidden");
+  document.getElementById("results").classList.add("hidden");
+  document.getElementById("workspace").classList.remove("hidden");
+  startTimer();
+  buildPalette();
+  renderQuestion();
+}
+
+function startTimer() {
+  clearInterval(timerHandle);
+  updateTimer();
+  timerHandle = setInterval(() => {
+    updateTimer();
+    saveState();
+  }, 1000);
+}
+function formatTime(ms) {
+  const total = Math.floor(ms / 1000);
+  const h = String(Math.floor(total / 3600)).padStart(2, "0");
+  const m = String(Math.floor((total % 3600) / 60)).padStart(2, "0");
+  const s = String(total % 60).padStart(2, "0");
+  return `${h}:${m}:${s}`;
+}
+function updateTimer() {
+  document.getElementById("timer").textContent = formatTime(currentElapsed());
+}
+
+function isTFComplete(q) {
+  return answers[q.id] && q.statements.every(st => typeof answers[q.id][st.roman] === "boolean");
+}
+function isAnswered(q) {
+  if (q.type === "sba") return !!answers[q.id];
+  return isTFComplete(q);
+}
+function attemptedCount() {
+  return QUESTIONS.filter(q => q.type === "sba" ? !!answers[q.id] : !!answers[q.id] && Object.keys(answers[q.id]).length > 0).length;
+}
+function completeCount() {
+  return QUESTIONS.filter(isAnswered).length;
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[idx];
+  if (q.type !== "tf") activeTFIndex = 0;
+  document.getElementById("progressText").textContent = `Question ${idx + 1} of 200 • ${mode === "instant" ? "Instant Mode" : "Submit Mode"}`;
+  document.getElementById("answeredText").textContent = `${completeCount()} / 200 completed`;
+  document.getElementById("progressBar").style.width = `${((idx + 1) / 200) * 100}%`;
+  document.getElementById("questionStem").textContent = `${idx + 1}. ${q.stem}`;
+  document.getElementById("flagBtn").textContent = flags[q.id] ? "Unflag" : "Flag";
+  document.getElementById("prevBtn").disabled = idx === 0;
+  document.getElementById("nextBtn").textContent = idx === 199 ? "Finish / Submit" : "Next Question";
+
+  const area = document.getElementById("answerArea");
+  const fb = document.getElementById("feedback");
+  area.innerHTML = "";
+  fb.classList.add("hidden");
+  fb.innerHTML = "";
+
+  if (q.type === "sba") renderSBA(q, area);
+  else renderTF(q, area);
+
+  updatePalette();
+  saveState();
+}
+
+function renderSBA(q, area) {
+  const isLocked = mode === "instant" && !!locked[q.id];
+  q.options.forEach((opt, j) => {
+    const L = "ABCDE"[j];
+    const label = document.createElement("label");
+    label.className = "option";
+    if (answers[q.id] === L) label.classList.add("selected");
+    if (isLocked) label.classList.add("locked");
+
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = "q";
+    input.value = L;
+    input.checked = answers[q.id] === L;
+    input.disabled = isLocked;
+    input.addEventListener("change", () => answerSBA(q, L));
+
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(`${L}. ${opt}`));
+    area.appendChild(label);
+  });
+
+  if (isLocked) showSBAFeedback(q);
+}
+
+function answerSBA(q, L) {
+  if (mode === "instant" && locked[q.id]) return;
+  answers[q.id] = L;
+  if (mode === "instant") locked[q.id] = true;
+  renderQuestion();
+}
+
+function renderTF(q, area) {
+  const a = answers[q.id] || {};
+  q.statements.forEach(st => {
+    const row = document.createElement("div");
+    row.className = "tfrow";
+    const statementIndex = q.statements.findIndex(x => x.roman === st.roman);
+    if (statementIndex === activeTFIndex) row.classList.add("active-tf");
+    row.addEventListener("click", () => { activeTFIndex = statementIndex; renderQuestion(); });
+
+    const txt = document.createElement("div");
+    txt.className = "tfstatement";
+    txt.textContent = `${st.roman}. ${st.text}`;
+    row.appendChild(txt);
+
+    const choices = document.createElement("div");
+    choices.className = "tfchoices";
+    const statementLocked = mode === "instant" && locked[q.id]?.[st.roman];
+
+    [true, false].forEach(v => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = v ? "TRUE" : "FALSE";
+      if (a[st.roman] === v) b.classList.add("selected");
+      if (statementLocked) {
+        b.disabled = true;
+        if (v === st.answer) b.classList.add("correct");
+        if (a[st.roman] === v && v !== st.answer) b.classList.add("wrong");
+      }
+      b.addEventListener("click", e => { e.stopPropagation(); answerTF(q, st.roman, v); });
+      choices.appendChild(b);
+    });
+
+    row.appendChild(choices);
+    area.appendChild(row);
+  });
+
+  if (mode === "instant" && answers[q.id] && Object.keys(answers[q.id]).length > 0) showTFFeedback(q);
+}
+
+function answerTF(q, roman, value) {
+  if (!answers[q.id] || typeof answers[q.id] !== "object") answers[q.id] = {};
+  if (mode === "instant") {
+    if (!locked[q.id] || typeof locked[q.id] !== "object") locked[q.id] = {};
+    if (locked[q.id][roman]) return;
+    answers[q.id][roman] = value;
+    locked[q.id][roman] = true;
+  } else {
+    answers[q.id][roman] = value;
+  }
+  renderQuestion();
+}
+
+function showSBAFeedback(q) {
+  const chosen = answers[q.id];
+  const ok = chosen === q.answer;
+  document.querySelectorAll(".option").forEach((el, j) => {
+    const L = "ABCDE"[j];
+    if (L === q.answer) el.classList.add("correct");
+    if (L === chosen && !ok) el.classList.add("wrong");
+  });
+  const fb = document.getElementById("feedback");
+  fb.classList.remove("hidden");
+  fb.innerHTML = `<strong>${ok ? "Correct." : "Incorrect."}</strong> ${escapeHTML(q.explanation)}`;
+}
+
+function showTFFeedback(q) {
+  const a = answers[q.id] || {};
+  let earned = 0;
+  let answered = 0;
+  const lines = [];
+  q.statements.forEach(st => {
+    if (typeof a[st.roman] === "boolean") {
+      answered++;
+      if (a[st.roman] === st.answer) earned += 0.25;
+      const ok = a[st.roman] === st.answer;
+      lines.push(`<div style="margin-top:7px"><strong>${st.roman}: ${ok ? "Correct" : "Incorrect"}.</strong> ${escapeHTML(st.explanation || "")}</div>`);
+    }
+  });
+  const fb = document.getElementById("feedback");
+  fb.classList.remove("hidden");
+  fb.innerHTML = `<strong>${earned.toFixed(2)} mark earned from ${answered} answered statement${answered === 1 ? "" : "s"}.</strong>${lines.join("")}`;
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[ch]);
+}
+
+function nextQuestion() {
+  if (idx < 199) {
+    idx++;
+    renderQuestion();
+  } else {
+    submitMock();
+  }
+}
+function prevQuestion() {
+  if (idx > 0) {
+    idx--;
+    renderQuestion();
+  }
+}
+function toggleFlag() {
+  const id = QUESTIONS[idx].id;
+  flags[id] = !flags[id];
+  renderQuestion();
+}
+function togglePalette() {
+  document.getElementById("paletteGrid").classList.toggle("hidden");
+}
+function goFirstUnanswered() {
+  const first = QUESTIONS.findIndex(q => !isAnswered(q));
+  if (first === -1) {
+    alert("All 200 questions are complete.");
+    return;
+  }
+  idx = first;
+  renderQuestion();
+}
+
+function buildPalette() {
+  const grid = document.getElementById("paletteGrid");
+  grid.innerHTML = "";
+  QUESTIONS.forEach((q, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "pal";
+    b.textContent = i + 1;
+    b.setAttribute("aria-label", `Go to question ${i + 1}`);
+    b.addEventListener("click", () => { idx = i; renderQuestion(); });
+    grid.appendChild(b);
+  });
+  updatePalette();
+}
+function updatePalette() {
+  document.querySelectorAll(".pal").forEach((b, i) => {
+    const q = QUESTIONS[i];
+    b.classList.toggle("current", i === idx);
+    b.classList.toggle("answered", isAnswered(q));
+    b.classList.toggle("flagged", !!flags[q.id]);
+  });
+}
+
+function pauseElapsedClock() {
+  if (sessionStartedAt) {
+    elapsedMs = currentElapsed();
+    sessionStartedAt = null;
+  }
+}
+
+function requestExit() {
+  const yes = confirm("Exit the mock? Your current progress will be saved so you can resume later.");
+  if (!yes) return;
+  pauseElapsedClock();
+  saveState();
+  clearInterval(timerHandle);
+  document.getElementById("workspace").classList.add("hidden");
+  document.getElementById("landing").classList.remove("hidden");
+  refreshLanding();
+}
+
+window.addEventListener("beforeunload", e => {
+  if (started && !document.getElementById("workspace").classList.contains("hidden")) {
+    saveState();
+    e.preventDefault();
+    e.returnValue = "";
+  }
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!started) return;
+  if (document.hidden) saveState();
+  else updateTimer();
+});
+
+function scoreMock() {
+  let sba = 0, tf = 0;
+  QUESTIONS.forEach(q => {
+    if (q.type === "sba") {
+      if (answers[q.id] === q.answer) sba += 1;
+    } else {
+      const a = answers[q.id] || {};
+      q.statements.forEach(st => {
+        if (a[st.roman] === st.answer) tf += 0.25;
+      });
+    }
+  });
+  return { sba, tf, total: sba + tf, attempted: attemptedCount(), completed: completeCount() };
+}
+
+function submitMock() {
+  const incomplete = QUESTIONS.filter(q => !isAnswered(q)).length;
+  const message = incomplete
+    ? `You still have ${incomplete} incomplete question(s). Submit the mock anyway?`
+    : "Submit the mock now? You will not be able to change answers after submission.";
+  if (!confirm(message)) return;
+
+  pauseElapsedClock();
+  clearInterval(timerHandle);
+  const sc = scoreMock();
+  const finalTime = elapsedMs;
+  safeRemove();
+  started = false;
+
+  document.getElementById("workspace").classList.add("hidden");
+  document.getElementById("results").classList.remove("hidden");
+  document.getElementById("scoreBig").textContent = `${sc.total.toFixed(2)} / 200`;
+  document.getElementById("percentText").textContent = `${((sc.total / 200) * 100).toFixed(1)}%`;
+  document.getElementById("sbaScore").textContent = `${sc.sba} / 169`;
+  document.getElementById("tfScore").textContent = `${sc.tf.toFixed(2)} / 31`;
+  document.getElementById("answeredCount").textContent = `${sc.completed} / 200`;
+  document.getElementById("timeTaken").textContent = formatTime(finalTime);
+  buildReview();
+}
+
+function buildReview() {
+  const area = document.getElementById("reviewArea");
+  area.innerHTML = "";
+  QUESTIONS.forEach((q, i) => {
+    const wrap = document.createElement("div");
+    wrap.className = "review-item";
+
+    if (q.type === "sba") {
+      const chosen = answers[q.id] || "Not answered";
+      const correctText = q.options["ABCDE".indexOf(q.answer)];
+      const chosenClass = chosen === q.answer ? "correct" : "wrong";
+      wrap.innerHTML = `
+        <strong>${i + 1}.</strong> ${escapeHTML(q.stem)}<br>
+        <span class="review-option ${chosenClass}">Your answer: ${escapeHTML(chosen)}</span><br>
+        <span class="review-option correct">Correct: ${q.answer}. ${escapeHTML(correctText)}</span><br>
+        <span>${escapeHTML(q.explanation)}</span>`;
+    } else {
+      const a = answers[q.id] || {};
+      const lines = q.statements.map(st => {
+        const user = a[st.roman] === undefined ? "—" : (a[st.roman] ? "T" : "F");
+        const truth = st.answer ? "T" : "F";
+        const cls = user === truth ? "correct" : "wrong";
+        return `<div style="margin-bottom:8px"><strong>${st.roman}.</strong> ${escapeHTML(st.text)} — <span class="review-option ${cls}">Your answer: ${user}</span> | <span class="review-option correct">Correct: ${truth}</span><br><span style="font-size:13px">${escapeHTML(st.explanation || "")}</span></div>`;
+      }).join("");
+      wrap.innerHTML = `<strong>${i + 1}.</strong> ${escapeHTML(q.stem)}<div style="margin-top:7px">${lines}</div><div style="margin-top:7px">${escapeHTML(q.explanation)}</div>`;
+    }
+    area.appendChild(wrap);
+  });
+}
+
+function toggleReview() {
+  document.getElementById("reviewArea").classList.toggle("hidden");
+}
+function restartMock() {
+  if (!confirm("Start a fresh attempt? The completed result on this page will be cleared.")) return;
+  answers = {}; flags = {}; locked = {}; idx = 0; elapsedMs = 0; sessionStartedAt = null; started = false;
+  safeRemove();
+  document.getElementById("results").classList.add("hidden");
+  document.getElementById("landing").classList.remove("hidden");
+  refreshLanding();
+}
+function clearProgress() {
+  if (!confirm("Clear the saved mock attempt? This cannot be undone.")) return;
+  safeRemove();
+  refreshLanding();
+}
+
+document.querySelectorAll(".mode-card").forEach(btn => btn.addEventListener("click", () => selectMode(btn.dataset.mode)));
+document.getElementById("startBtn").addEventListener("click", () => startMock(false));
+document.getElementById("resumeBtn").addEventListener("click", () => startMock(true));
+document.getElementById("clearBtn").addEventListener("click", clearProgress);
+document.getElementById("prevBtn").addEventListener("click", prevQuestion);
+document.getElementById("flagBtn").addEventListener("click", toggleFlag);
+document.getElementById("exitBtn").addEventListener("click", requestExit);
+document.getElementById("nextBtn").addEventListener("click", nextQuestion);
+document.getElementById("paletteToggle").addEventListener("click", togglePalette);
+document.getElementById("firstUnansweredBtn").addEventListener("click", goFirstUnanswered);
+document.getElementById("submitBtn").addEventListener("click", submitMock);
+document.getElementById("reviewBtn").addEventListener("click", toggleReview);
+document.getElementById("restartBtn").addEventListener("click", restartMock);
+
+
+function moveTFActive(delta) {
+  const q = QUESTIONS[idx];
+  if (q.type !== "tf") return;
+  activeTFIndex = (activeTFIndex + delta + 4) % 4;
+  renderQuestion();
+}
+function answerCurrentTF(value) {
+  const q = QUESTIONS[idx];
+  if (q.type !== "tf") return;
+  const st = q.statements[activeTFIndex];
+  activeTFIndex = (activeTFIndex + 1) % 4;
+  answerTF(q, st.roman, value);
+}
+document.addEventListener("keydown", e => {
+  if (document.getElementById("workspace").classList.contains("hidden")) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const key = e.key.toLowerCase();
+  const q = QUESTIONS[idx];
+
+  if (q.type === "sba" && ["a","b","c","d","e"].includes(key)) {
+    e.preventDefault();
+    answerSBA(q, key.toUpperCase());
+    return;
+  }
+  if (q.type === "tf") {
+    if (["1","2","3","4"].includes(key)) {
+      e.preventDefault();
+      activeTFIndex = Number(key) - 1;
+      renderQuestion();
+      return;
+    }
+    if (key === "t" || key === "f") {
+      e.preventDefault();
+      answerCurrentTF(key === "t");
+      return;
+    }
+    if (e.key === "ArrowUp") { e.preventDefault(); moveTFActive(-1); return; }
+    if (e.key === "ArrowDown") { e.preventDefault(); moveTFActive(1); return; }
+  }
+  if (e.key === "ArrowRight" || e.key === "Enter" || key === "n") {
+    e.preventDefault(); nextQuestion(); return;
+  }
+  if (e.key === "ArrowLeft" || key === "p") {
+    e.preventDefault(); prevQuestion(); return;
+  }
+  if (key === "x") {
+    e.preventDefault(); toggleFlag(); return;
+  }
+  if (key === "u") {
+    e.preventDefault(); goFirstUnanswered(); return;
+  }
+  if (e.key === "Escape") {
+    e.preventDefault(); requestExit(); return;
+  }
+});
+
+refreshLanding();
+</script>
+</body>
+</html>
